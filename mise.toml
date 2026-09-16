@@ -1,6 +1,6 @@
 [tools]
 hadolint = "latest"
-node = "lts"
+node = "24.21.0"
 python = "3.12"
 uv = "0.12"
 yamllint = "latest"
