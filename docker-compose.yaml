@@ -96,6 +96,57 @@ services:
         condition: service_healthy
     restart: "no"
 
+  producer-api:
+    build:
+      context: ./apps/producer-api
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8001
+      KAFKA_BROKERS: kafka:9092
+      KAFKA_TOPIC: ${KAFKA_TOPIC}
+    networks:
+      - internal
+    depends_on:
+      kafka-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://127.0.0.1:8001/health/ready')"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+    restart: unless-stopped
+
+  consumer-api:
+    build:
+      context: ./apps/consumer-api
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8002
+      KAFKA_BROKERS: kafka:9092
+      KAFKA_TOPIC: ${KAFKA_TOPIC}
+      KAFKA_GROUP_ID: ${KAFKA_GROUP_ID}
+      DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}"
+    networks:
+      - internal
+    depends_on:
+      kafka:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      kafka-init:
+        condition: service_completed_successfully
+      postgres-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://127.0.0.1:8002/health/ready')"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+    restart: unless-stopped
+
+
 networks:
   internal:
     driver: bridge
