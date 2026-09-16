@@ -69,6 +69,33 @@ services:
       retries: 12
       start_period: 20s
 
+  kafka-init: # Executa uma vez para criar o tópico
+    build:
+      context: ./apps/producer-api
+    command: ["python", "prepare.py"]
+    environment:
+      KAFKA_BROKERS: kafka:9092
+      KAFKA_TOPIC: ${KAFKA_TOPIC}
+    networks:
+      - internal
+    depends_on:
+      kafka:
+        condition: service_healthy
+    restart: "no"
+
+  postgres-init: #Executa uma vez para criar a tabela
+    build:
+      context: ./apps/consumer-api
+    command: ["python", "prepare.py"]
+    environment:
+      DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}"
+    networks:
+      - internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
 networks:
   internal:
     driver: bridge
