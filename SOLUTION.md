@@ -133,6 +133,23 @@ A publicação deve retornar `202`; cada texto deve aparecer em `/consumer/` e e
 
 O workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) executa em pushes para `main`, pull requests e manualmente pelo GitHub Actions. Ele valida o Compose, constrói e inicia os serviços e executa [`scripts/verify-e2e.sh`](scripts/verify-e2e.sh), que confirma as rotas do Nginx, publica uma mensagem e verifica sua persistência pela API consumidora. Em caso de falha, o job publica o estado e os logs de todos os containers.
 
+## Backup e restauração do PostgreSQL
+
+Volumes preservam os dados entre recriações, mas não são um backup recuperável. [`scripts/backup-postgres.sh`](scripts/backup-postgres.sh) cria um dump PostgreSQL em formato customizado no diretório `backups/`, que não é versionado. Para restaurá-lo em um banco separado, sem alterar o banco da aplicação:
+
+```sh
+backup_file="$(bash scripts/backup-postgres.sh)"
+RESTORE_DB=messages_restore bash scripts/restore-postgres-backup.sh "$backup_file"
+```
+
+O segundo comando recria apenas `messages_restore`, restaura o dump e imprime a quantidade de mensagens recuperadas. Para demonstrar a recuperação, compare esse total com a consulta da aplicação em `/api/consumer/messages` ou execute:
+
+```sh
+bash scripts/verify-backup-restore.sh
+```
+
+Esse script compara a quantidade de mensagens do banco principal com a restaurada em `ci_messages_restore`. O workflow de CI também executa essa verificação após o fluxo ponta a ponta. O backup fica no disco local e não inclui agendamento, criptografia ou cópia externa; esses controles devem ser definidos conforme a política do ambiente onde ele for armazenado.
+
 ## Notas
 
 Tempo dedicado: aproximadamente 8 horas. A principal dificuldade foi a permissão inicial do volume Kafka. Usei Codex para revisar a configuração Docker/Compose e validei os comandos e o fluxo gerado.

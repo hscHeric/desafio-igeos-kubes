@@ -33,6 +33,9 @@ jobs:
       - name: Verify end-to-end flow
         run: bash scripts/verify-e2e.sh
 
+      - name: Verify PostgreSQL backup and restore
+        run: bash scripts/verify-backup-restore.sh
+
       - name: Show service state
         if: always()
         run: docker compose ps --all
