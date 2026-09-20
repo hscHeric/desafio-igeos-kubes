@@ -130,6 +130,33 @@ curl -s http://localhost:8080/api/consumer/messages
 
 A publicação deve retornar `202`; cada texto deve aparecer em `/consumer/` e em `/api/consumer/messages` em até 30 segundos. Para verificar Kafka recriado com uma mensagem pendente, execute a sequência do consumidor parado, seguida de `docker compose down` e `docker compose up -d`, sem remover os volumes. O histórico deve conter a mensagem após a retomada.
 
+## Retenção e reprocessamento no Kafka
+
+O tópico usa `KAFKA_LOG_RETENTION_MS=604800000`, equivalente a sete dias. A retenção mantém eventos disponíveis para diagnóstico e releitura durante esse período; ela não substitui o PostgreSQL nem um backup independente.
+
+O script [`scripts/verify-kafka-reprocess.sh`](scripts/verify-kafka-reprocess.sh) para o consumidor, publica uma mensagem pendente, confirma a primeira persistência, pausa o grupo, redefine seus offsets para o início do tópico e retoma o consumidor. O evento é lido novamente, mas o PostgreSQL continua com uma única linha porque a persistência usa `ON CONFLICT (id) DO NOTHING`:
+
+```sh
+bash scripts/verify-kafka-reprocess.sh
+```
+
+O script imprime as duas ocorrências de `event=persisted` nos logs e confirma uma única ocorrência do identificador na API. O teste relê todo o histórico disponível do tópico; em produção, o reset de offsets deve ser planejado para uma faixa ou grupo de reprocessamento específico.
+
+Evidência executada em 20/09/2026:
+
+```text
+Mensagem pendente: c084c906-7994-4ddd-b580-7bb13911bb7a
+Mensagem persistida antes da releitura
+Resetando o grupo message-store para o início do tópico messages
+
+GROUP           TOPIC           PARTITION  NEW-OFFSET
+message-store   messages        0          0
+
+Releitura confirmada: 2 registros de log, 1 registro no PostgreSQL
+consumer-api-1  | 2026-09-20 13:14:39,859 service=consumer-api level=INFO event=persisted message_id=c084c906-7994-4ddd-b580-7bb13911bb7a partition=0 offset=3
+consumer-api-1  | 2026-09-20 13:14:47,101 service=consumer-api level=INFO event=persisted message_id=c084c906-7994-4ddd-b580-7bb13911bb7a partition=0 offset=3
+```
+
 ## Integração contínua
 
 O workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) executa em pushes para `main`, pull requests e manualmente pelo GitHub Actions. Ele valida o Compose, constrói e inicia os serviços e executa [`scripts/verify-e2e.sh`](scripts/verify-e2e.sh), que confirma as rotas do Nginx, publica uma mensagem e verifica sua persistência pela API consumidora. Em caso de falha, o job publica o estado e os logs de todos os containers.
@@ -184,6 +211,17 @@ bash scripts/verify-log-aggregation.sh
 ```
 
 O script publica uma mensagem, aguarda os dois serviços processarem o evento e imprime as linhas filtradas por `message_id`, comprovando `event=published` no produtor e `event=persisted` no consumidor. Use a saída do comando ou uma captura do dashboard como evidência da entrega.
+
+Evidência executada em 20/09/2026:
+
+```text
+Mensagem publicada: 216aa365-2449-4043-a7e3-8f053f42fd1c
+event=published encontrado no producer-api
+event=persisted encontrado no consumer-api
+
+producer-api-1  | 2026-09-20 13:04:45,638 service=producer-api level=INFO event=published message_id=216aa365-2449-4043-a7e3-8f053f42fd1c
+consumer-api-1  | 2026-09-20 13:04:45,652 service=consumer-api level=INFO event=persisted message_id=216aa365-2449-4043-a7e3-8f053f42fd1c partition=0 offset=1
+```
 
 ## Segurança dos containers
 
