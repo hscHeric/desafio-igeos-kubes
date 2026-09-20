@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: Messaging
+    orgId: 1
+    folder: Mensageria
+    type: file
+    disableDeletion: false
+    editable: false
+    options:
+      path: /var/lib/grafana/dashboards

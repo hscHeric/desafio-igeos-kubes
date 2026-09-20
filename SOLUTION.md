@@ -30,6 +30,7 @@ Copie `.env.example` para `.env` e ajuste somente se necessário:
 | `KAFKA_CLUSTER_ID` | Identificador persistente do cluster KRaft |
 | `KAFKA_LOG_RETENTION_MS` | Retenção dos eventos Kafka |
 | `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` | Banco e credenciais locais do PostgreSQL |
+| `GRAFANA_ADMIN_USER`, `GRAFANA_ADMIN_PASSWORD` | Acesso local ao painel Grafana |
 
 ## Decisões
 
@@ -149,6 +150,32 @@ bash scripts/verify-backup-restore.sh
 ```
 
 Esse script compara a quantidade de mensagens do banco principal com a restaurada em `ci_messages_restore`. O workflow de CI também executa essa verificação após o fluxo ponta a ponta. O backup fica no disco local e não inclui agendamento, criptografia ou cópia externa; esses controles devem ser definidos conforme a política do ambiente onde ele for armazenado.
+
+## Métricas e painel
+
+As duas APIs expõem `/metrics` internamente para o Prometheus. São coletadas requisições e latência HTTP, publicações confirmadas, mensagens persistidas, erros do consumidor, estado do worker e atraso entre `createdAt` e a persistência.
+
+O Prometheus avalia as séries a cada cinco segundos. O Grafana recebe uma fonte Prometheus automaticamente e carrega o dashboard `Mensageria — Operação`, com requisições, erros, mensagens persistidas, atraso p95, estado do worker e alertas ativos. Acesse pelo gateway em `http://localhost:8080/grafana/`; use as credenciais `GRAFANA_ADMIN_USER` e `GRAFANA_ADMIN_PASSWORD` do `.env`.
+
+Prometheus e Alertmanager também ficam disponíveis para diagnóstico em `/prometheus/` e `/alerts/`. Eles não têm portas publicadas diretamente no host.
+
+## Alertas
+
+As regras em `monitoring/alerts.yml` alertam quando uma API deixa de ser coletada, quando o worker Kafka para, quando há erro de processamento ou quando o p95 do atraso passa de cinco segundos. O Alertmanager agrupa os eventos e mantém seu estado; nesta solução local o receptor é apenas o próprio Alertmanager, sem integração externa de e-mail ou chat.
+
+Para demonstrar indisponibilidade e recuperação:
+
+```sh
+bash scripts/verify-alert-recovery.sh
+```
+
+O script para `consumer-api`, espera `ConsumerApiDown`, inicia o serviço novamente e confirma que o alerta desaparece depois que o healthcheck volta. O atraso esperado inclui os intervalos de scrape, avaliação da regra e agrupamento do Alertmanager.
+
+## Segurança dos containers
+
+As APIs são executadas pelo usuário sem privilégios `app`; os frontends estáticos usam o usuário `nginx` em uma porta não privilegiada. No Compose, APIs e frontends usam filesystem somente leitura, `/tmp` temporário, `no-new-privileges` e não recebem capabilities Linux. O Nginx de entrada usa filesystem somente leitura e diretórios temporários em memória. Kafka, PostgreSQL e o inicializador do volume Kafka mantêm as permissões exigidas pelos respectivos serviços de estado.
+
+O CI gera relatórios JSON do Trivy para as quatro imagens da aplicação, filtrados para vulnerabilidades corrigíveis de severidade alta ou crítica. Os relatórios ficam disponíveis como o artefato `trivy-reports` por 14 dias no job do GitHub Actions. Eles devem orientar atualizações de imagens base e dependências; o workflow os registra como linha de base e não falha automaticamente por vulnerabilidades de dependências de terceiros.
 
 ## Notas
 

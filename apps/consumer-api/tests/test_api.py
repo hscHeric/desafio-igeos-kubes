@@ -49,6 +49,12 @@ def test_readiness_checks_worker_and_dependencies(client):
     assert client.get("/health/ready").status_code == 503
 
 
+def test_metrics_endpoint_exposes_consumer_metrics(client):
+    response = client.get("/metrics")
+    assert response.status_code == 200
+    assert "consumer_http_requests_total" in response.text
+
+
 def record():
     event = {"id": str(uuid4()), "text": "Mensagem", "createdAt": datetime.now(timezone.utc).isoformat()}
     return SimpleNamespace(topic="messages", partition=0, offset=4, key=event["id"].encode(), value=json.dumps(event).encode())

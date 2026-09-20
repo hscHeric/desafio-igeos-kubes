@@ -1,0 +1,47 @@
+groups:
+  - name: messaging
+    rules:
+      - alert: ProducerApiDown
+        expr: up{job="producer-api"} == 0
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: Producer API indisponível
+          description: O Prometheus não consegue coletar métricas do produtor.
+
+      - alert: ConsumerApiDown
+        expr: up{job="consumer-api"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: Consumer API indisponível
+          description: O Prometheus não consegue coletar métricas do consumidor.
+
+      - alert: ConsumerWorkerDown
+        expr: consumer_worker_up == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: Worker Kafka parado
+          description: A API consumidora está viva, mas seu worker Kafka não está processando eventos.
+
+      - alert: ConsumerProcessingErrors
+        expr: increase(consumer_processing_errors_total[5m]) > 0
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: Erros no processamento Kafka
+          description: O consumidor registrou falhas de processamento nos últimos cinco minutos.
+
+      - alert: ConsumerProcessingLagHigh
+        expr: histogram_quantile(0.95, sum(rate(consumer_processing_lag_seconds_bucket[5m])) by (le)) > 5
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: Atraso do consumidor elevado
+          description: O percentil 95 do atraso entre publicação e persistência está acima de cinco segundos.

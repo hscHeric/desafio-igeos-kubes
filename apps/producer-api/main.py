@@ -1,6 +1,7 @@
 import asyncio
 import json
 import logging
+from time import perf_counter
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from uuid import uuid4
@@ -9,7 +10,8 @@ import uvicorn
 from aiokafka import AIOKafkaProducer
 from aiokafka.admin import AIOKafkaAdminClient
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
+from prometheus_client import CONTENT_TYPE_LATEST, Counter, Histogram, generate_latest
 from pydantic import BaseModel, ConfigDict, ValidationError, field_validator
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
@@ -17,6 +19,15 @@ from config import Settings
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s service=producer-api level=%(levelname)s %(message)s")
 log = logging.getLogger(__name__)
+
+HTTP_REQUESTS = Counter(
+    "producer_http_requests_total", "HTTP requests handled by the producer API", ["method", "path", "status"]
+)
+HTTP_LATENCY = Histogram(
+    "producer_http_request_duration_seconds", "HTTP request duration", ["method", "path"]
+)
+PUBLISHED_MESSAGES = Counter("producer_messages_published_total", "Messages confirmed by Kafka")
+PUBLISH_LATENCY = Histogram("producer_publish_duration_seconds", "Kafka publish duration")
 
 
 class MessageInput(BaseModel):
@@ -69,6 +80,19 @@ def create_app():
     app = FastAPI(title="Produtor de mensagens", lifespan=lifespan)
     app.state.settings = Settings()
 
+    @app.middleware("http")
+    async def observe_requests(request, call_next):
+        started = perf_counter()
+        response = None
+        try:
+            response = await call_next(request)
+            return response
+        finally:
+            status = str(response.status_code if response is not None else 500)
+            path = request.url.path
+            HTTP_REQUESTS.labels(request.method, path, status).inc()
+            HTTP_LATENCY.labels(request.method, path).observe(perf_counter() - started)
+
     @app.exception_handler(StarletteHTTPException)
     async def http_error(request, error):
         return JSONResponse({"error": str(error.detail)}, status_code=error.status_code)
@@ -93,6 +117,10 @@ def create_app():
             raise HTTPException(503, "Kafka ou tópico indisponível.") from None
         return {"status": "ready", "service": "producer-api"}
 
+    @app.get("/metrics", include_in_schema=False)
+    async def metrics():
+        return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
+
     @app.post("/messages", status_code=202)
     async def publish(request: Request):
         if request.headers.get("content-type", "").split(";")[0].strip().lower() != "application/json":
@@ -107,6 +135,7 @@ def create_app():
         except (ValidationError, UnicodeError):
             raise HTTPException(400, "Envie um JSON com text entre 1 e 1000 caracteres, sem campos adicionais.") from None
         event = {"id": str(uuid4()), "text": data.text, "createdAt": datetime.now(timezone.utc).isoformat()}
+        started = perf_counter()
         try:
             async with asyncio.timeout(10):
                 await app.state.producer.send_and_wait(
@@ -117,6 +146,8 @@ def create_app():
         except Exception as error:
             log.warning("event=publish_failed message_id=%s error_type=%s", event["id"], type(error).__name__)
             raise HTTPException(503, "Não foi possível confirmar a publicação. Confira o histórico antes de tentar novamente.") from None
+        PUBLISHED_MESSAGES.inc()
+        PUBLISH_LATENCY.observe(perf_counter() - started)
         log.info("event=published message_id=%s", event["id"])
         return event
 

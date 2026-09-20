@@ -64,6 +64,12 @@ def test_liveness_and_readiness_are_different(client):
     assert client.get("/health/live").status_code == 200
 
 
+def test_metrics_endpoint_exposes_producer_metrics(client):
+    response = client.get("/metrics")
+    assert response.status_code == 200
+    assert "producer_http_requests_total" in response.text
+
+
 def test_response_waits_for_kafka_acknowledgement():
     async def scenario():
         app = create_app()

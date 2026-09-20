@@ -10,12 +10,18 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
   UV_LINK_MODE=copy \
   PATH="/app/.venv/bin:$PATH"
 
+RUN groupadd --system app && useradd --system --gid app --home-dir /app --no-create-home app
+
 COPY pyproject.toml uv.lock ./
 
 RUN uv sync --locked --no-dev --no-install-project
 
-COPY . .
+COPY --chown=app:app . .
+
+RUN chown -R app:app /app
 
 EXPOSE 8002
+
+USER app
 
 CMD ["python", "main.py"]

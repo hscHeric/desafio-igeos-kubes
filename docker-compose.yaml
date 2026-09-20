@@ -100,6 +100,7 @@ services:
   producer-api:
     build:
       context: ./apps/producer-api
+    image: desafio-igeos-kubes-producer-api:latest
     environment:
       HOST: 0.0.0.0
       PORT: 8001
@@ -107,6 +108,13 @@ services:
       KAFKA_TOPIC: ${KAFKA_TOPIC}
     networks:
       - internal
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     depends_on:
       kafka-init:
         condition: service_completed_successfully
@@ -121,6 +129,7 @@ services:
   consumer-api:
     build:
       context: ./apps/consumer-api
+    image: desafio-igeos-kubes-consumer-api:latest
     environment:
       HOST: 0.0.0.0
       PORT: 8002
@@ -130,6 +139,13 @@ services:
       DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}"
     networks:
       - internal
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     depends_on:
       kafka:
         condition: service_healthy
@@ -150,10 +166,18 @@ services:
   producer-web:
     build:
       context: ./apps/producer-web
+    image: desafio-igeos-kubes-producer-web:latest
     networks:
       - internal
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
-      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/"]
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8080/"]
       interval: 10s
       timeout: 5s
       retries: 6
@@ -163,14 +187,64 @@ services:
   consumer-web:
     build:
       context: ./apps/consumer-web
+    image: desafio-igeos-kubes-consumer-web:latest
     networks:
       - internal
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
-      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/"]
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8080/"]
       interval: 10s
       timeout: 5s
       retries: 6
       start_period: 10s
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v3.13.3
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
+      - prometheus-data:/prometheus
+    networks:
+      - internal
+    restart: unless-stopped
+
+  alertmanager:
+    image: prom/alertmanager:v0.34.1
+    command:
+      - --config.file=/etc/alertmanager/alertmanager.yml
+      - --storage.path=/alertmanager
+    volumes:
+      - ./monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager-data:/alertmanager
+    networks:
+      - internal
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:13.2.2
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_SERVER_ROOT_URL: http://localhost:${HTTP_PORT:-8080}/grafana/
+      GF_SERVER_SERVE_FROM_SUB_PATH: "true"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    networks:
+      - internal
+    depends_on:
+      - prometheus
     restart: unless-stopped
 
   nginx:
@@ -181,6 +255,13 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     networks:
       - internal
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
     depends_on:
       producer-api:
         condition: service_healthy
@@ -206,3 +287,6 @@ networks:
 volumes:
   postgres-data:
   kafka-data:
+  prometheus-data:
+  alertmanager-data:
+  grafana-data:

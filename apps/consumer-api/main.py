@@ -1,6 +1,7 @@
 import asyncio
 import logging
 from contextlib import asynccontextmanager, suppress
+from time import perf_counter, time
 from uuid import UUID
 
 import asyncpg
@@ -8,7 +9,8 @@ import uvicorn
 from aiokafka import AIOKafkaConsumer, TopicPartition
 from aiokafka.admin import AIOKafkaAdminClient
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
+from prometheus_client import CONTENT_TYPE_LATEST, Counter, Gauge, Histogram, generate_latest
 from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, field_validator
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
@@ -16,6 +18,18 @@ from config import Settings
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s service=consumer-api level=%(levelname)s %(message)s")
 log = logging.getLogger(__name__)
+
+HTTP_REQUESTS = Counter(
+    "consumer_http_requests_total", "HTTP requests handled by the consumer API", ["method", "path", "status"]
+)
+HTTP_LATENCY = Histogram(
+    "consumer_http_request_duration_seconds", "HTTP request duration", ["method", "path"]
+)
+PERSISTED_MESSAGES = Counter("consumer_messages_persisted_total", "Messages written to PostgreSQL")
+CONSUMER_ERRORS = Counter("consumer_processing_errors_total", "Consumer processing failures")
+PROCESSING_LAG = Histogram("consumer_processing_lag_seconds", "Delay from event creation to persistence")
+WORKER_UP = Gauge("consumer_worker_up", "Whether the Kafka consumer worker is running")
+LAST_PROCESSED = Gauge("consumer_last_processed_timestamp_seconds", "Unix timestamp of the last persisted message")
 
 
 class Event(BaseModel):
@@ -35,6 +49,7 @@ class Event(BaseModel):
 
 async def consume(app):
     consumer, pool = app.state.consumer, app.state.pool
+    WORKER_UP.set(1)
     try:
         while True:
             record = await consumer.getone()
@@ -48,9 +63,15 @@ async def consume(app):
                 event.id, event.text, event.createdAt,
             )
             await consumer.commit({TopicPartition(record.topic, record.partition): record.offset + 1})
+            PERSISTED_MESSAGES.inc()
+            PROCESSING_LAG.observe(max(0.0, time() - event.createdAt.timestamp()))
+            LAST_PROCESSED.set(time())
             log.info("event=persisted message_id=%s partition=%s offset=%s", event.id, record.partition, record.offset)
     except Exception as error:
+        CONSUMER_ERRORS.inc()
         log.error("event=consumer_stopped error_type=%s action=restart_after_fix", type(error).__name__)
+    finally:
+        WORKER_UP.set(0)
 
 
 @asynccontextmanager
@@ -104,6 +125,19 @@ def create_app():
     app = FastAPI(title="Consumidor de mensagens", lifespan=lifespan)
     app.state.settings = Settings()
 
+    @app.middleware("http")
+    async def observe_requests(request, call_next):
+        started = perf_counter()
+        response = None
+        try:
+            response = await call_next(request)
+            return response
+        finally:
+            status = str(response.status_code if response is not None else 500)
+            path = request.url.path
+            HTTP_REQUESTS.labels(request.method, path, status).inc()
+            HTTP_LATENCY.labels(request.method, path).observe(perf_counter() - started)
+
     @app.exception_handler(StarletteHTTPException)
     async def http_error(request, error):
         return JSONResponse({"error": str(error.detail)}, status_code=error.status_code)
@@ -130,6 +164,10 @@ def create_app():
         except Exception:
             raise HTTPException(503, "Kafka, PostgreSQL ou consumidor indisponível.") from None
         return {"status": "ready", "service": "consumer-api"}
+
+    @app.get("/metrics", include_in_schema=False)
+    async def metrics():
+        return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
     @app.get("/messages")
     async def messages():

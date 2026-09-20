@@ -36,6 +36,61 @@ jobs:
       - name: Verify PostgreSQL backup and restore
         run: bash scripts/verify-backup-restore.sh
 
+      - name: Verify alert and recovery
+        run: bash scripts/verify-alert-recovery.sh
+
+      - name: Scan producer API image
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: desafio-igeos-kubes-producer-api:latest
+          format: json
+          output: trivy-producer-api.json
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: 0
+
+      - name: Scan consumer API image
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: desafio-igeos-kubes-consumer-api:latest
+          format: json
+          output: trivy-consumer-api.json
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: 0
+          skip-setup-trivy: true
+
+      - name: Scan producer web image
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: desafio-igeos-kubes-producer-web:latest
+          format: json
+          output: trivy-producer-web.json
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: 0
+          skip-setup-trivy: true
+
+      - name: Scan consumer web image
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: desafio-igeos-kubes-consumer-web:latest
+          format: json
+          output: trivy-consumer-web.json
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: 0
+          skip-setup-trivy: true
+
+      - name: Upload vulnerability reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-reports
+          path: trivy-*.json
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Show service state
         if: always()
         run: docker compose ps --all
