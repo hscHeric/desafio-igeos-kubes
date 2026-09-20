@@ -173,7 +173,7 @@ O script para `consumer-api`, espera `ConsumerApiDown`, inicia o serviço novame
 
 ## Segurança dos containers
 
-As APIs são executadas pelo usuário sem privilégios `app`; os frontends estáticos usam o usuário `nginx` em uma porta não privilegiada. No Compose, APIs e frontends usam filesystem somente leitura, `/tmp` temporário, `no-new-privileges` e não recebem capabilities Linux. O Nginx de entrada usa filesystem somente leitura e diretórios temporários em memória. Kafka, PostgreSQL e o inicializador do volume Kafka mantêm as permissões exigidas pelos respectivos serviços de estado.
+As APIs são executadas pelo usuário sem privilégios `app`; os frontends estáticos usam a imagem `nginxinc/nginx-unprivileged` e o usuário `nginx` em uma porta não privilegiada. No Compose, APIs e frontends usam filesystem somente leitura, `/tmp` temporário, `no-new-privileges` e não recebem capabilities Linux. O Nginx de entrada usa filesystem somente leitura e diretórios temporários em memória. Kafka, PostgreSQL e o inicializador do volume Kafka mantêm as permissões exigidas pelos respectivos serviços de estado.
 
 O CI gera relatórios JSON do Trivy para as quatro imagens da aplicação, filtrados para vulnerabilidades corrigíveis de severidade alta ou crítica. Os relatórios ficam disponíveis como o artefato `trivy-reports` por 14 dias no job do GitHub Actions. Eles devem orientar atualizações de imagens base e dependências; o workflow os registra como linha de base e não falha automaticamente por vulnerabilidades de dependências de terceiros.
 
