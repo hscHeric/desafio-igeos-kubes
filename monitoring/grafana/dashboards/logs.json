@@ -1,0 +1,49 @@
+{
+  "annotations": {"list": []},
+  "editable": false,
+  "panels": [
+    {
+      "datasource": {"type": "loki", "uid": "loki"},
+      "gridPos": {"h": 14, "w": 24, "x": 0, "y": 0},
+      "id": 1,
+      "options": {
+        "deduplication": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": true,
+        "showTime": true,
+        "sortOrder": "Descending",
+        "wrapLines": false
+      },
+      "targets": [{"expr": "{service=~\"producer-api|consumer-api\"}", "refId": "A"}],
+      "title": "Logs da aplicação",
+      "type": "logs"
+    },
+    {
+      "datasource": {"type": "loki", "uid": "loki"},
+      "gridPos": {"h": 14, "w": 24, "x": 0, "y": 14},
+      "id": 2,
+      "options": {
+        "deduplication": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": true,
+        "showTime": true,
+        "sortOrder": "Descending",
+        "wrapLines": false
+      },
+      "targets": [{"expr": "{service=~\"kafka|kafka-init|kafka-volume-init|postgres|postgres-init|nginx|prometheus|alertmanager|grafana|loki|promtail|producer-web|consumer-web\"}", "refId": "A"}],
+      "title": "Logs de infraestrutura",
+      "type": "logs"
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 39,
+  "tags": ["mensageria", "logs"],
+  "time": {"from": "now-15m", "to": "now"},
+  "title": "Mensageria — Logs",
+  "uid": "mensageria-logs",
+  "version": 1
+}

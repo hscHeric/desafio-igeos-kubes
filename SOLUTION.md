@@ -171,6 +171,12 @@ bash scripts/verify-alert-recovery.sh
 
 O script para `consumer-api`, espera `ConsumerApiDown`, inicia o serviço novamente e confirma que o alerta desaparece depois que o healthcheck volta. O atraso esperado inclui os intervalos de scrape, avaliação da regra e agrupamento do Alertmanager.
 
+## Agregação de logs
+
+Loki e Promtail reúnem os logs dos containers em uma fonte consultável pelo Grafana. O Promtail usa a descoberta do Docker pelo socket somente para leitura e adiciona os rótulos `service`, `container` e `compose_project`. Os APIs registram `message_id` nas etapas de publicação e persistência, permitindo acompanhar o mesmo evento entre produtor e consumidor.
+
+No Grafana, abra a pasta `Mensageria` e o dashboard `Mensageria — Logs`. O painel `Logs da aplicação` mostra `producer-api` e `consumer-api`, enquanto `Logs de infraestrutura` usa uma lista explícita de serviços como Kafka, PostgreSQL, Nginx, Prometheus, Grafana, Loki e os frontends. Para investigar uma mensagem específica, use `{service=~"producer-api|consumer-api"} |= "message_id=<ID>"`. A retenção local do Loki é de sete dias no volume `loki-data`; isso atende ao diagnóstico local e não substitui arquivamento externo.
+
 ## Segurança dos containers
 
 As APIs são executadas pelo usuário sem privilégios `app`; os frontends estáticos usam a imagem `nginxinc/nginx-unprivileged` e o usuário `nginx` em uma porta não privilegiada. No Compose, APIs e frontends usam filesystem somente leitura, `/tmp` temporário, `no-new-privileges` e não recebem capabilities Linux. O Nginx de entrada usa filesystem somente leitura e diretórios temporários em memória. Kafka, PostgreSQL e o inicializador do volume Kafka mantêm as permissões exigidas pelos respectivos serviços de estado.
