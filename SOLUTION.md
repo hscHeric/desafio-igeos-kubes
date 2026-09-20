@@ -193,6 +193,8 @@ Recuperação confirmada: volume, metadados e offset preservados; 1 registro no 
 
 O workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) executa em pushes para `main`, pull requests e manualmente pelo GitHub Actions. Ele valida o Compose, constrói e inicia os serviços, verifica o fluxo ponta a ponta, o reprocessamento e a recuperação avançada do Kafka, executa backup/restauração, alerta/recuperação e uma carga pequena. Em caso de falha, o job publica o estado e os logs de todos os containers.
 
+A execução aprovada do workflow está registrada em [`evidence/ci_evidence.png`](evidence/ci_evidence.png).
+
 ## Backup e restauração do PostgreSQL
 
 Volumes preservam os dados entre recriações, mas não são um backup recuperável. [`scripts/backup-postgres.sh`](scripts/backup-postgres.sh) cria um dump PostgreSQL em formato customizado no diretório `backups/`, que não é versionado. Para restaurá-lo em um banco separado, sem alterar o banco da aplicação:
