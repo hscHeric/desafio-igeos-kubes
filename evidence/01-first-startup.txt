@@ -1,0 +1,386 @@
+ Image desafio-igeos-kubes-consumer-api:latest Building 
+ Image desafio-igeos-kubes-producer-api:latest Building 
+ Image desafio-igeos-kubes-consumer-web:latest Building 
+ Image desafio-igeos-kubes-producer-web:latest Building 
+ Image desafio-igeos-kubes-postgres-init Building 
+ Image desafio-igeos-kubes-kafka-init Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 3.32kB done
+#1 DONE 0.0s
+
+#2 [consumer-web internal] load build definition from Dockerfile
+#2 transferring dockerfile: 509B done
+#2 DONE 0.0s
+
+#3 [kafka-init internal] load build definition from Dockerfile
+#3 transferring dockerfile: 614B done
+#3 DONE 0.0s
+
+#4 [producer-web internal] load build definition from Dockerfile
+#4 transferring dockerfile: 509B done
+#4 DONE 0.1s
+
+#5 [consumer-api internal] load build definition from Dockerfile
+#5 transferring dockerfile: 614B done
+#5 DONE 0.1s
+
+#6 [consumer-api internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#6 DONE 0.7s
+
+#7 [producer-web internal] load metadata for docker.io/library/node:24.18.1-bookworm-slim
+#7 DONE 0.7s
+
+#8 [consumer-web internal] load metadata for docker.io/nginxinc/nginx-unprivileged:1-alpine
+#8 DONE 0.7s
+
+#9 [consumer-web internal] load .dockerignore
+#9 transferring context: 130B done
+#9 DONE 0.0s
+
+#10 [producer-web internal] load .dockerignore
+#10 transferring context: 130B done
+#10 DONE 0.0s
+
+#11 [consumer-web internal] load build context
+#11 transferring context: 1.26kB done
+#11 DONE 0.0s
+
+#12 [producer-web internal] load build context
+#12 transferring context: 1.26kB done
+#12 DONE 0.0s
+
+#13 [producer-web stage-1 1/3] FROM docker.io/nginxinc/nginx-unprivileged:1-alpine@sha256:b54ac358b83fc6c965793fd271839b4ea4cdb6e99895bb19618cbc2ca152d972
+#13 resolve docker.io/nginxinc/nginx-unprivileged:1-alpine@sha256:b54ac358b83fc6c965793fd271839b4ea4cdb6e99895bb19618cbc2ca152d972
+#13 resolve docker.io/nginxinc/nginx-unprivileged:1-alpine@sha256:b54ac358b83fc6c965793fd271839b4ea4cdb6e99895bb19618cbc2ca152d972 0.1s done
+#13 DONE 0.1s
+
+#14 [kafka-init internal] load metadata for ghcr.io/astral-sh/uv:0.12.0
+#14 DONE 0.8s
+
+#15 [producer-api internal] load .dockerignore
+#15 transferring context: 156B done
+#15 DONE 0.0s
+
+#16 [consumer-web build 1/6] FROM docker.io/library/node:24.18.1-bookworm-slim@sha256:235600a8101ab264e117b1768e925532262668dc9b581ef1dd7d96ced463b8e7
+#16 resolve docker.io/library/node:24.18.1-bookworm-slim@sha256:235600a8101ab264e117b1768e925532262668dc9b581ef1dd7d96ced463b8e7 0.1s done
+#16 DONE 0.1s
+
+#17 [postgres-init internal] load .dockerignore
+#17 transferring context: 156B done
+#17 DONE 0.0s
+
+#18 [producer-web build 6/6] RUN npm run build
+#18 CACHED
+
+#19 [producer-web build 5/6] COPY . .
+#19 CACHED
+
+#20 [producer-web build 3/6] COPY package.json package-lock.json ./
+#20 CACHED
+
+#21 [producer-web stage-1 2/3] COPY --chown=nginx:nginx --from=build /app/dist /usr/share/nginx/html
+#21 CACHED
+
+#22 [producer-web build 4/6] RUN npm ci
+#22 CACHED
+
+#23 [consumer-web build 4/6] RUN npm ci
+#23 CACHED
+
+#24 [consumer-web build 6/6] RUN npm run build
+#24 CACHED
+
+#25 [consumer-web build 5/6] COPY . .
+#25 CACHED
+
+#26 [consumer-web stage-1 2/3] COPY --chown=nginx:nginx --from=build /app/dist /usr/share/nginx/html
+#26 CACHED
+
+#27 [producer-web build 2/6] WORKDIR /app
+#27 CACHED
+
+#28 [consumer-web build 3/6] COPY package.json package-lock.json ./
+#28 CACHED
+
+#29 [producer-api internal] load build context
+#29 DONE 0.0s
+
+#30 [postgres-init internal] load build context
+#30 DONE 0.0s
+
+#31 [consumer-web stage-1 3/3] COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
+#31 CACHED
+
+#32 [producer-web stage-1 3/3] COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
+#32 CACHED
+
+#33 [producer-api stage-0 1/8] FROM docker.io/library/python:3.12-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#33 resolve docker.io/library/python:3.12-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#33 resolve docker.io/library/python:3.12-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e 0.1s done
+#33 DONE 0.1s
+
+#34 [producer-api] FROM ghcr.io/astral-sh/uv:0.12.0@sha256:606e70c71c852d03f611b1e56a195d08648507018a7057fab82c4974c4eae105
+#34 resolve ghcr.io/astral-sh/uv:0.12.0@sha256:606e70c71c852d03f611b1e56a195d08648507018a7057fab82c4974c4eae105 0.1s done
+#34 DONE 0.1s
+
+#30 [consumer-api internal] load build context
+#30 transferring context: 2.11kB done
+#30 DONE 0.0s
+
+#29 [kafka-init internal] load build context
+#29 transferring context: 1.78kB done
+#29 DONE 0.0s
+
+#35 [consumer-api stage-0 6/8] RUN uv sync --locked --no-dev --no-install-project
+#35 CACHED
+
+#36 [consumer-api stage-0 7/8] COPY --chown=app:app . .
+#36 CACHED
+
+#37 [consumer-api stage-0 5/8] COPY pyproject.toml uv.lock ./
+#37 CACHED
+
+#38 [producer-api stage-0 6/8] RUN uv sync --locked --no-dev --no-install-project
+#38 CACHED
+
+#39 [producer-api stage-0 2/8] COPY --from=ghcr.io/astral-sh/uv:0.12.0 /uv /uvx /bin/
+#39 CACHED
+
+#40 [producer-api stage-0 4/8] RUN groupadd --system app && useradd --system --gid app --home-dir /app --no-create-home app
+#40 CACHED
+
+#41 [producer-api stage-0 3/8] WORKDIR /app
+#41 CACHED
+
+#42 [producer-api stage-0 5/8] COPY pyproject.toml uv.lock ./
+#42 CACHED
+
+#43 [producer-api stage-0 7/8] COPY --chown=app:app . .
+#43 CACHED
+
+#44 [producer-api stage-0 8/8] RUN chown -R app:app /app
+#44 CACHED
+
+#45 [consumer-api stage-0 8/8] RUN chown -R app:app /app
+#45 CACHED
+
+#46 [producer-web] exporting to image
+#46 exporting layers done
+#46 exporting manifest sha256:68866616844185d143a5f1286c7ac5f7f01c9edc7b58d9f2ff5c3a32a8e427a9 done
+#46 exporting config sha256:dbc7da98a0f89731509f4b8711c6d2a6ff386fc233fcfa14b88b5de5f6435fe1 0.0s done
+#46 exporting attestation manifest sha256:ada2ec56b34c1cd7bf47e4fcf41e8e57f9102b4c42b429d8acd58ec3e4f1974a 0.0s done
+#46 exporting manifest list sha256:87f9ebb11bbce61b500293fd8342e9dbf398827c944fb7feab73ada08c343b92
+#46 exporting manifest list sha256:87f9ebb11bbce61b500293fd8342e9dbf398827c944fb7feab73ada08c343b92 0.1s done
+#46 naming to docker.io/library/desafio-igeos-kubes-producer-web:latest 0.0s done
+#46 unpacking to docker.io/library/desafio-igeos-kubes-producer-web:latest
+#46 ...
+
+#47 [consumer-web] exporting to image
+#47 exporting layers done
+#47 exporting manifest sha256:b5e4844855732097507b156a99b11df103d96da9c7a6d1b9fc2031a457d9543a 0.0s done
+#47 exporting config sha256:d2a4f1d726ed7219d819b290dfadca5a04a290671a6cc32f9cea21ad45fa6569 0.0s done
+#47 exporting attestation manifest sha256:9f8e07a9d5cf603e8f5cec85bd882a99c90cbe0e721df2ca27a476011f9b2f0e 0.1s done
+#47 exporting manifest list sha256:1f7ab26bab37a16eaf46a813efef6d2c3cd7173673772bde3dd421c35ddb8676 0.1s done
+#47 naming to docker.io/library/desafio-igeos-kubes-consumer-web:latest 0.0s done
+#47 unpacking to docker.io/library/desafio-igeos-kubes-consumer-web:latest 0.1s done
+#47 DONE 0.4s
+
+#46 [producer-web] exporting to image
+#46 unpacking to docker.io/library/desafio-igeos-kubes-producer-web:latest 0.1s done
+#46 DONE 0.4s
+
+#48 [postgres-init] exporting to image
+#48 exporting layers done
+#48 exporting manifest sha256:5ea5e837d97b9c504d3aef5a3d6f32de25f8f050bb0e1dd3d13835b2815b82d5 0.0s done
+#48 exporting config sha256:7cd3e93b353a8e7046ea4647e2f0f44a502252abcc2bc9baf25b03c5fcb65526 0.0s done
+#48 exporting attestation manifest sha256:084fe0da2c22d64816b43b1920fd986ed1ddae27ab3d3f5e68cff062655291a1 0.1s done
+#48 exporting manifest list sha256:d159642945a7ba610c0d5ba92d0bcb07ca95bedcef2409b0166d1488af73e7ac 0.1s done
+#48 naming to docker.io/library/desafio-igeos-kubes-postgres-init:latest
+#48 naming to docker.io/library/desafio-igeos-kubes-postgres-init:latest 0.0s done
+#48 unpacking to docker.io/library/desafio-igeos-kubes-postgres-init:latest 0.0s done
+#48 DONE 0.4s
+
+#49 [producer-api] exporting to image
+#49 exporting layers done
+#49 exporting manifest sha256:ea2985149aef56cd56200dd3cd3c00d78576556065cec1ea1f7de9891923bef6 0.0s done
+#49 exporting config sha256:8b5c10ee906a686b40d3493e88c40684885f4868eb6eedbc662b3a5db3748590 0.0s done
+#49 exporting attestation manifest sha256:6bc335f84fa975d0c6c3f8a938d8f19e668066ac0a2044b478502fe20735d19d 0.1s done
+#49 exporting manifest list sha256:d85e27d48a2591c304c87938ddcd25a5d4dd9ff93c38489300f32897ccf60168 0.1s done
+#49 naming to docker.io/library/desafio-igeos-kubes-producer-api:latest 0.0s done
+#49 unpacking to docker.io/library/desafio-igeos-kubes-producer-api:latest 0.0s done
+#49 DONE 0.5s
+
+#50 [kafka-init] exporting to image
+#50 exporting layers done
+#50 exporting manifest sha256:59c4deaece883f6b8f5e534c9e48d7f8c7edec8c867aef8af229b5fede903bba 0.0s done
+#50 exporting config sha256:52f13e39637e45a61d8f84bd959b1b678987c7ed5ca67353c4da9c6eb595dae3 0.0s done
+#50 exporting attestation manifest sha256:2b97b427a8f051c8e596c9df68b70c35610209a935235e1021d72e679da19195 0.1s done
+#50 exporting manifest list sha256:155b038dd22f45526acc6935ef94d3a6f0bb1d95d305e25a0a336e7b454696a6 0.1s done
+#50 naming to docker.io/library/desafio-igeos-kubes-kafka-init:latest 0.0s done
+#50 unpacking to docker.io/library/desafio-igeos-kubes-kafka-init:latest 0.0s done
+#50 DONE 0.5s
+
+#51 [consumer-api] exporting to image
+#51 exporting layers done
+#51 exporting manifest sha256:ab8a516b5e9af145837156c3d6041d5e1e461bd794391af1f1b206d7f7741bc0 0.0s done
+#51 exporting config sha256:8fbdf8a9f38ba4edd2fd3214bfdf0163685f6855e0197cbc37cd022385b91220 0.0s done
+#51 exporting attestation manifest sha256:84e269b879334b4a891a4e37aeafe5741953b405da6e9917058642d385f1be61 0.1s done
+#51 exporting manifest list sha256:77275927adfd3c3e639b651ad5790bec6f7af97bb4c8443b9c3046c2a475a745 0.1s done
+#51 naming to docker.io/library/desafio-igeos-kubes-consumer-api:latest 0.0s done
+#51 unpacking to docker.io/library/desafio-igeos-kubes-consumer-api:latest 0.0s done
+#51 DONE 0.5s
+
+#52 [consumer-web] resolving provenance for metadata file
+#52 ...
+
+#53 [producer-web] resolving provenance for metadata file
+#53 DONE 0.1s
+
+#54 [postgres-init] resolving provenance for metadata file
+#54 DONE 0.1s
+
+#55 [kafka-init] resolving provenance for metadata file
+#55 DONE 0.1s
+
+#56 [consumer-api] resolving provenance for metadata file
+#56 DONE 0.0s
+
+#52 [consumer-web] resolving provenance for metadata file
+#52 DONE 0.1s
+
+#57 [producer-api] resolving provenance for metadata file
+#57 DONE 0.0s
+ Image desafio-igeos-kubes-kafka-init Built 
+ Image desafio-igeos-kubes-postgres-init Built 
+ Image desafio-igeos-kubes-consumer-api:latest Built 
+ Image desafio-igeos-kubes-producer-api:latest Built 
+ Image desafio-igeos-kubes-consumer-web:latest Built 
+ Image desafio-igeos-kubes-producer-web:latest Built 
+ Volume desafio-igeos-kubes_grafana-data Creating 
+ Volume desafio-igeos-kubes_loki-data Creating 
+ Volume desafio-igeos-kubes_grafana-data Creating 
+ Volume desafio-igeos-kubes_postgres-data Creating 
+ Volume desafio-igeos-kubes_loki-data Creating 
+ Volume desafio-igeos-kubes_postgres-data Creating 
+ Volume desafio-igeos-kubes_alertmanager-data Creating 
+ Volume desafio-igeos-kubes_prometheus-data Creating 
+ Volume desafio-igeos-kubes_prometheus-data Creating 
+ Volume desafio-igeos-kubes_kafka-data Creating 
+ Volume desafio-igeos-kubes_kafka-data Creating 
+ Volume desafio-igeos-kubes_alertmanager-data Creating 
+ Network desafio-igeos-kubes_internal Creating 
+ Network desafio-igeos-kubes_internal Creating 
+ Volume desafio-igeos-kubes_grafana-data Created 
+ Volume desafio-igeos-kubes_grafana-data Created 
+ Volume desafio-igeos-kubes_postgres-data Created 
+ Volume desafio-igeos-kubes_postgres-data Created 
+ Volume desafio-igeos-kubes_kafka-data Created 
+ Volume desafio-igeos-kubes_kafka-data Created 
+ Volume desafio-igeos-kubes_prometheus-data Created 
+ Volume desafio-igeos-kubes_prometheus-data Created 
+ Volume desafio-igeos-kubes_loki-data Created 
+ Volume desafio-igeos-kubes_loki-data Created 
+ Volume desafio-igeos-kubes_alertmanager-data Created 
+ Volume desafio-igeos-kubes_alertmanager-data Created 
+ Network desafio-igeos-kubes_internal Created 
+ Network desafio-igeos-kubes_internal Created 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Creating 
+ Container desafio-igeos-kubes-alertmanager-1 Creating 
+ Container desafio-igeos-kubes-producer-web-1 Creating 
+ Container desafio-igeos-kubes-consumer-web-1 Creating 
+ Container desafio-igeos-kubes-postgres-1 Creating 
+ Container desafio-igeos-kubes-prometheus-1 Creating 
+ Container desafio-igeos-kubes-loki-1 Creating 
+ Container desafio-igeos-kubes-alertmanager-1 Created 
+ Container desafio-igeos-kubes-producer-web-1 Created 
+ Container desafio-igeos-kubes-consumer-web-1 Created 
+ Container desafio-igeos-kubes-prometheus-1 Created 
+ Container desafio-igeos-kubes-loki-1 Created 
+ Container desafio-igeos-kubes-promtail-1 Creating 
+ Container desafio-igeos-kubes-grafana-1 Creating 
+ Container desafio-igeos-kubes-postgres-1 Created 
+ Container desafio-igeos-kubes-postgres-init-1 Creating 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Created 
+ Container desafio-igeos-kubes-kafka-1 Creating 
+ Container desafio-igeos-kubes-grafana-1 Created 
+ Container desafio-igeos-kubes-promtail-1 Created 
+ Container desafio-igeos-kubes-postgres-init-1 Created 
+ Container desafio-igeos-kubes-kafka-1 Created 
+ Container desafio-igeos-kubes-kafka-init-1 Creating 
+ Container desafio-igeos-kubes-kafka-init-1 Created 
+ Container desafio-igeos-kubes-producer-api-1 Creating 
+ Container desafio-igeos-kubes-consumer-api-1 Creating 
+ Container desafio-igeos-kubes-producer-api-1 Created 
+ Container desafio-igeos-kubes-consumer-api-1 Created 
+ Container desafio-igeos-kubes-nginx-1 Creating 
+ Container desafio-igeos-kubes-nginx-1 Created 
+ Container desafio-igeos-kubes-alertmanager-1 Starting 
+ Container desafio-igeos-kubes-producer-web-1 Starting 
+ Container desafio-igeos-kubes-loki-1 Starting 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Starting 
+ Container desafio-igeos-kubes-postgres-1 Starting 
+ Container desafio-igeos-kubes-prometheus-1 Starting 
+ Container desafio-igeos-kubes-consumer-web-1 Starting 
+ Container desafio-igeos-kubes-alertmanager-1 Started 
+ Container desafio-igeos-kubes-producer-web-1 Started 
+ Container desafio-igeos-kubes-loki-1 Started 
+ Container desafio-igeos-kubes-promtail-1 Starting 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Started 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Started 
+ Container desafio-igeos-kubes-postgres-1 Waiting 
+ Container desafio-igeos-kubes-prometheus-1 Started 
+ Container desafio-igeos-kubes-grafana-1 Starting 
+ Container desafio-igeos-kubes-grafana-1 Started 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Exited 
+ Container desafio-igeos-kubes-kafka-1 Starting 
+ Container desafio-igeos-kubes-consumer-web-1 Started 
+ Container desafio-igeos-kubes-promtail-1 Started 
+ Container desafio-igeos-kubes-kafka-1 Started 
+ Container desafio-igeos-kubes-kafka-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Healthy 
+ Container desafio-igeos-kubes-postgres-init-1 Starting 
+ Container desafio-igeos-kubes-postgres-init-1 Started 
+ Container desafio-igeos-kubes-kafka-1 Healthy 
+ Container desafio-igeos-kubes-kafka-init-1 Starting 
+ Container desafio-igeos-kubes-kafka-init-1 Started 
+ Container desafio-igeos-kubes-postgres-1 Waiting 
+ Container desafio-igeos-kubes-kafka-init-1 Waiting 
+ Container desafio-igeos-kubes-postgres-init-1 Waiting 
+ Container desafio-igeos-kubes-kafka-1 Waiting 
+ Container desafio-igeos-kubes-kafka-init-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Healthy 
+ Container desafio-igeos-kubes-postgres-init-1 Exited 
+ Container desafio-igeos-kubes-kafka-1 Healthy 
+ Container desafio-igeos-kubes-kafka-init-1 Exited 
+ Container desafio-igeos-kubes-consumer-api-1 Starting 
+ Container desafio-igeos-kubes-kafka-init-1 Exited 
+ Container desafio-igeos-kubes-producer-api-1 Starting 
+ Container desafio-igeos-kubes-consumer-api-1 Started 
+ Container desafio-igeos-kubes-producer-api-1 Started 
+ Container desafio-igeos-kubes-producer-web-1 Waiting 
+ Container desafio-igeos-kubes-consumer-web-1 Waiting 
+ Container desafio-igeos-kubes-producer-api-1 Waiting 
+ Container desafio-igeos-kubes-consumer-api-1 Waiting 
+ Container desafio-igeos-kubes-producer-web-1 Healthy 
+ Container desafio-igeos-kubes-consumer-web-1 Healthy 
+ Container desafio-igeos-kubes-producer-api-1 Healthy 
+ Container desafio-igeos-kubes-consumer-api-1 Healthy 
+ Container desafio-igeos-kubes-nginx-1 Starting 
+ Container desafio-igeos-kubes-nginx-1 Started 
+NAME                                      IMAGE                                     COMMAND                  SERVICE             CREATED         STATUS                     PORTS
+desafio-igeos-kubes-alertmanager-1        prom/alertmanager:v0.34.1                 "/bin/alertmanager -…"   alertmanager        3 minutes ago   Up 3 minutes               9093/tcp
+desafio-igeos-kubes-consumer-api-1        desafio-igeos-kubes-consumer-api:latest   "python main.py"         consumer-api        3 minutes ago   Up 3 minutes (healthy)     8002/tcp
+desafio-igeos-kubes-consumer-web-1        desafio-igeos-kubes-consumer-web:latest   "/docker-entrypoint.…"   consumer-web        3 minutes ago   Up 3 minutes (healthy)     8080/tcp
+desafio-igeos-kubes-grafana-1             grafana/grafana:13.2.2                    "/run.sh"                grafana             3 minutes ago   Up 3 minutes               3000/tcp
+desafio-igeos-kubes-kafka-1               apache/kafka:4.3.1                        "/__cacert_entrypoin…"   kafka               3 minutes ago   Up 3 minutes (healthy)     9092/tcp
+desafio-igeos-kubes-kafka-init-1          desafio-igeos-kubes-kafka-init            "python prepare.py"      kafka-init          3 minutes ago   Exited (0) 3 minutes ago   
+desafio-igeos-kubes-kafka-volume-init-1   apache/kafka:4.3.1                        "/bin/sh -ec 'chown …"   kafka-volume-init   3 minutes ago   Exited (0) 3 minutes ago   
+desafio-igeos-kubes-loki-1                grafana/loki:3.5.5                        "/usr/bin/loki -conf…"   loki                3 minutes ago   Up 3 minutes               3100/tcp
+desafio-igeos-kubes-nginx-1               nginx:1.28-alpine                         "/docker-entrypoint.…"   nginx               3 minutes ago   Up 3 minutes (healthy)     0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
+desafio-igeos-kubes-postgres-1            postgres:17-bookworm                      "docker-entrypoint.s…"   postgres            3 minutes ago   Up 3 minutes (healthy)     5432/tcp
+desafio-igeos-kubes-postgres-init-1       desafio-igeos-kubes-postgres-init         "python prepare.py"      postgres-init       3 minutes ago   Exited (0) 3 minutes ago   
+desafio-igeos-kubes-producer-api-1        desafio-igeos-kubes-producer-api:latest   "python main.py"         producer-api        3 minutes ago   Up 3 minutes (healthy)     8001/tcp
+desafio-igeos-kubes-producer-web-1        desafio-igeos-kubes-producer-web:latest   "/docker-entrypoint.…"   producer-web        3 minutes ago   Up 3 minutes (healthy)     8080/tcp
+desafio-igeos-kubes-prometheus-1          prom/prometheus:v3.13.3                   "/bin/prometheus --c…"   prometheus          3 minutes ago   Up 3 minutes               9090/tcp
+desafio-igeos-kubes-promtail-1            grafana/promtail:3.5.5                    "/usr/bin/promtail -…"   promtail            3 minutes ago   Up 3 minutes               

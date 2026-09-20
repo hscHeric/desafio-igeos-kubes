@@ -1,0 +1,338 @@
+consumer-api-1  | INFO:     Started server process [1]
+consumer-api-1  | INFO:     Waiting for application startup.
+consumer-api-1  | 2026-09-20 20:42:28,656 service=consumer-api level=INFO Updating subscribed topics to: frozenset({'messages'})
+consumer-api-1  | 2026-09-20 20:42:28,749 service=consumer-api level=INFO Discovered coordinator 1 for group message-store
+consumer-api-1  | 2026-09-20 20:42:28,749 service=consumer-api level=INFO Revoking previously assigned partitions set() for group message-store
+consumer-api-1  | 2026-09-20 20:42:28,749 service=consumer-api level=INFO (Re-)joining group message-store
+consumer-api-1  | 2026-09-20 20:42:28,760 service=consumer-api level=INFO Joined group 'message-store' (generation 5) with member_id consumer-api-7c913f73-74a1-413c-ae82-323fda395d9a
+consumer-api-1  | 2026-09-20 20:42:28,760 service=consumer-api level=INFO Elected group leader -- performing partition assignments using roundrobin
+consumer-api-1  | 2026-09-20 20:42:28,790 service=consumer-api level=INFO Successfully synced group message-store with generation 5
+consumer-api-1  | 2026-09-20 20:42:28,790 service=consumer-api level=INFO Setting newly assigned partitions {TopicPartition(topic='messages', partition=0)} for group message-store
+consumer-api-1  | 2026-09-20 20:42:28,791 service=consumer-api level=INFO event=started
+consumer-api-1  | INFO:     Application startup complete.
+consumer-api-1  | INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     127.0.0.1:50644 - "GET /health/ready HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.13:59820 - "GET /health/live HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     127.0.0.1:44386 - "GET /health/ready HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.13:34796 - "GET /health/live HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.13:34794 - "GET /messages HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     127.0.0.1:38930 - "GET /health/ready HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.13:34756 - "GET /health/live HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     127.0.0.1:39912 - "GET /health/ready HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.13:54974 - "GET /health/live HTTP/1.1" 200 OK
+postgres-1      | 
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     127.0.0.1:58430 - "GET /health/ready HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+postgres-1      | PostgreSQL Database directory appears to contain a database; Skipping initialization
+postgres-1      | 
+postgres-1      | 2026-09-20 20:42:00.149 UTC [1] LOG:  starting PostgreSQL 17.11 (Debian 17.11-1.pgdg12+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit
+postgres-1      | 2026-09-20 20:42:00.150 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1      | 2026-09-20 20:42:00.150 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1      | 2026-09-20 20:42:00.152 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1      | 2026-09-20 20:42:00.158 UTC [29] LOG:  database system was shut down at 2026-09-20 20:41:45 UTC
+postgres-1      | 2026-09-20 20:42:00.167 UTC [1] LOG:  database system is ready to accept connections
+consumer-api-1  | INFO:     172.18.0.13:50730 - "GET /health/live HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     127.0.0.1:35394 - "GET /health/ready HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.13:43618 - "GET /health/live HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     127.0.0.1:49686 - "GET /health/ready HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.13:58842 - "GET /health/live HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     127.0.0.1:59726 - "GET /health/ready HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.13:52760 - "GET /health/live HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.6:38676 - "GET /metrics HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     127.0.0.1:43366 - "GET /health/ready HTTP/1.1" 200 OK
+consumer-api-1  | INFO:     172.18.0.13:59648 - "GET /health/live HTTP/1.1" 200 OK
+producer-api-1  | INFO:     Started server process [1]
+producer-api-1  | INFO:     Waiting for application startup.
+producer-api-1  | 2026-09-20 20:42:29,520 service=producer-api level=INFO event=started
+producer-api-1  | INFO:     Application startup complete.
+producer-api-1  | INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     127.0.0.1:38932 - "GET /health/ready HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.13:50952 - "GET /health/live HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     127.0.0.1:51332 - "GET /health/ready HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.13:57370 - "GET /health/live HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     127.0.0.1:53630 - "GET /health/ready HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.13:36978 - "GET /health/live HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     127.0.0.1:53654 - "GET /health/ready HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.13:32908 - "GET /health/live HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     127.0.0.1:59140 - "GET /health/ready HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.13:55050 - "GET /health/live HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     127.0.0.1:38212 - "GET /health/ready HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.13:40066 - "GET /health/live HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     127.0.0.1:45302 - "GET /health/ready HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.13:58702 - "GET /health/live HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     127.0.0.1:57738 - "GET /health/ready HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.13:40972 - "GET /health/live HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.6:56016 - "GET /metrics HTTP/1.1" 200 OK
+producer-api-1  | INFO:     127.0.0.1:46336 - "GET /health/ready HTTP/1.1" 200 OK
+producer-api-1  | INFO:     172.18.0.13:46652 - "GET /health/live HTTP/1.1" 200 OK
+nginx-1         | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1         | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1         | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1         | 10-listen-on-ipv6-by-default.sh: info: can not modify /etc/nginx/conf.d/default.conf (read-only file system?)
+nginx-1         | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1         | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1         | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1         | /docker-entrypoint.sh: Configuration complete; ready for start up
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: using the "epoll" event method
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: nginx/1.28.3
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0) 
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: OS: Linux 7.2.5-200.fc44.x86_64
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: start worker processes
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: start worker process 21
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: start worker process 22
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: start worker process 23
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: start worker process 24
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: start worker process 25
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: start worker process 26
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: start worker process 27
+nginx-1         | 2026/09/20 20:42:33 [notice] 1#1: start worker process 28
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:42:38 +0000] "GET /api/producer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:42:38 +0000] "GET /api/consumer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:42:48 +0000] "GET /api/producer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:42:48 +0000] "GET /api/consumer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 172.18.0.1 - - [20/Sep/2026:20:42:48 +0000] "GET /api/consumer/messages HTTP/1.1" 200 554 "-" "curl/8.18.0" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:42:58 +0000] "GET /api/producer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:42:58 +0000] "GET /api/consumer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:08 +0000] "GET /api/producer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:08 +0000] "GET /api/consumer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:18 +0000] "GET /api/producer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:18 +0000] "GET /api/consumer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:28 +0000] "GET /api/producer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:28 +0000] "GET /api/consumer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:39 +0000] "GET /api/producer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:39 +0000] "GET /api/consumer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:49 +0000] "GET /api/producer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:49 +0000] "GET /api/consumer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:59 +0000] "GET /api/producer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+nginx-1         | 127.0.0.1 - - [20/Sep/2026:20:43:59 +0000] "GET /api/consumer/health/live HTTP/1.1" 200 40 "-" "Wget" "-"
+promtail-1      | level=info ts=2026-09-20T20:42:01.257914526Z caller=promtail.go:135 msg="Reloading configuration file" sha3sum=16aa54447c4e04c7866ce3d4c5e6dd4b34fba61949e1283b275be51286897fc1
+promtail-1      | level=info ts=2026-09-20T20:42:01.323381094Z caller=server.go:368 msg="server listening on addresses" http=[::]:9080 grpc=[::]:39423
+promtail-1      | level=info ts=2026-09-20T20:42:01.323580149Z caller=main.go:173 msg="Starting Promtail" version="(version=3.5.5, branch=release-3.5.x, revision=5aa8bd27)"
+promtail-1      | level=warn ts=2026-09-20T20:42:01.323626355Z caller=promtail.go:265 msg="enable watchConfig"
+promtail-1      | level=info ts=2026-09-20T20:42:06.322200987Z caller=target_group.go:130 msg="added Docker target" containerID=b3ff5347a68cfa83c23b3e5355cd7ae8b33cb2b3369f4190c245ece636529179
+promtail-1      | level=info ts=2026-09-20T20:42:06.32227681Z caller=target_group.go:130 msg="added Docker target" containerID=84d583b3c6646a91ff3102432e962df0efd725fab41aeba35f7304b37a483377
+promtail-1      | level=info ts=2026-09-20T20:42:06.322311966Z caller=target_group.go:130 msg="added Docker target" containerID=790e9a5fb7429be501b7962c82eb0abc5198b337cea9151eff8e0319a573bbe2
+promtail-1      | level=info ts=2026-09-20T20:42:06.322333827Z caller=target_group.go:130 msg="added Docker target" containerID=fdc84f0b5bdedca73506ed6a61f08e6817aad7027965c407e9212a98493c0b58
+promtail-1      | level=info ts=2026-09-20T20:42:06.322345078Z caller=target_group.go:130 msg="added Docker target" containerID=9bc56fdc473fd3a6098d94eec1a22b754a1b8ed0117fb696b4a77138e30e6798
+promtail-1      | level=info ts=2026-09-20T20:42:06.322360186Z caller=target_group.go:130 msg="added Docker target" containerID=ae64973115b45ee236992f56ff9188d4e63d5157db39f6e3427395885062f6d1
+promtail-1      | level=info ts=2026-09-20T20:42:06.322373371Z caller=target_group.go:130 msg="added Docker target" containerID=d24fff6172f092d579220d6581306682eb89d28210caee5a7184e24714fa74e8
+promtail-1      | level=info ts=2026-09-20T20:42:06.322396725Z caller=target_group.go:130 msg="added Docker target" containerID=a3d4f9a6c2911a5442a1a6d875acdc921cc6a3193df89b3a43e5d7647d4cbb41
+promtail-1      | level=info ts=2026-09-20T20:42:06.322417514Z caller=target_group.go:130 msg="added Docker target" containerID=83801cc1f945ca518f610c63abf10dd1a467874b7cc4f84ccb768e4d6a40dbaa
+promtail-1      | level=info ts=2026-09-20T20:42:11.323116881Z caller=target_group.go:130 msg="added Docker target" containerID=342e10ffee7e56baf346204d76a05c48d5475d157af1e87aa27ca27c9a5893e4
+promtail-1      | level=info ts=2026-09-20T20:42:11.327634144Z caller=target.go:133 target=docker/342e10ffee7e56baf346204d76a05c48d5475d157af1e87aa27ca27c9a5893e4 msg="finished transferring logs" written=55 container=342e10ffee7e56baf346204d76a05c48d5475d157af1e87aa27ca27c9a5893e4
+promtail-1      | level=info ts=2026-09-20T20:42:31.32537779Z caller=target.go:133 target=docker/aa4b2c2bedc5cf0caad8e297b9c39e017fd36e6c005a4cd3301d77e7417622e7 msg="finished transferring logs" written=56 container=aa4b2c2bedc5cf0caad8e297b9c39e017fd36e6c005a4cd3301d77e7417622e7
+promtail-1      | level=info ts=2026-09-20T20:42:31.323038362Z caller=target_group.go:130 msg="added Docker target" containerID=aa4b2c2bedc5cf0caad8e297b9c39e017fd36e6c005a4cd3301d77e7417622e7
+promtail-1      | level=info ts=2026-09-20T20:42:36.323644879Z caller=target_group.go:130 msg="added Docker target" containerID=7d6f25540023c3c408f66ff15ce464b5a6f0ff4631ab8477ddd6a8a057509449
+promtail-1      | level=info ts=2026-09-20T20:42:36.323684413Z caller=target_group.go:130 msg="added Docker target" containerID=3c7a2e0fce0c3d69f87319af0c34bf223e71d19e9f83d12123dff24a23816807
+promtail-1      | level=info ts=2026-09-20T20:42:41.323240572Z caller=target_group.go:130 msg="added Docker target" containerID=95b41141ab7b19e9ce7e4e6d354bbc1b0eefd01708cac10b17a0689ef399a3d9
+loki-1          | level=info ts=2026-09-20T20:41:59.984720557Z caller=main.go:126 msg="Starting Loki" version="(version=3.5.5, branch=release-3.5.x, revision=5aa8bd27)"
+loki-1          | level=info ts=2026-09-20T20:41:59.984763117Z caller=main.go:127 msg="Loading configuration file" filename=/etc/loki/config.yml
+loki-1          | level=info ts=2026-09-20T20:41:59.986538405Z caller=server.go:368 msg="server listening on addresses" http=[::]:3100 grpc=[::]:9096
+loki-1          | level=info ts=2026-09-20T20:41:59.988298765Z caller=table_manager.go:136 index-store=tsdb-2024-01-01 msg="uploading tables"
+loki-1          | level=info ts=2026-09-20T20:41:59.988279238Z caller=table_manager.go:300 index-store=tsdb-2024-01-01 msg="query readiness setup completed" duration=5.76µs distinct_users_len=0 distinct_users=
+loki-1          | level=info ts=2026-09-20T20:41:59.988343829Z caller=shipper.go:165 index-store=tsdb-2024-01-01 msg="starting index shipper in RW mode"
+loki-1          | level=info ts=2026-09-20T20:41:59.988670223Z caller=head_manager.go:311 index-store=tsdb-2024-01-01 component=tsdb-head-manager msg="loaded wals by period" groups=0
+loki-1          | level=info ts=2026-09-20T20:41:59.988717211Z caller=manager.go:86 index-store=tsdb-2024-01-01 component=tsdb-manager msg="loaded leftover local indices" err=null successful=true buckets=0 indices=0 failures=0
+loki-1          | level=info ts=2026-09-20T20:41:59.98873783Z caller=head_manager.go:311 index-store=tsdb-2024-01-01 component=tsdb-head-manager msg="loaded wals by period" groups=0
+loki-1          | level=info ts=2026-09-20T20:41:59.996526474Z caller=worker.go:131 component=querier msg="Starting querier worker using query-scheduler and scheduler ring for addresses"
+loki-1          | level=info ts=2026-09-20T20:41:59.997894496Z caller=mapper.go:47 msg="cleaning up mapped rules directory" path=/loki/rules-temp
+loki-1          | level=info ts=2026-09-20T20:42:00.016583685Z caller=module_service.go:82 msg=starting module=server
+loki-1          | level=info ts=2026-09-20T20:42:00.016630082Z caller=module_service.go:82 msg=starting module=cache-generation-loader
+loki-1          | level=info ts=2026-09-20T20:42:00.016666521Z caller=module_service.go:82 msg=starting module=memberlist-kv
+loki-1          | level=info ts=2026-09-20T20:42:00.016689464Z caller=module_service.go:82 msg=starting module=ring
+loki-1          | level=info ts=2026-09-20T20:42:00.016707798Z caller=module_service.go:82 msg=starting module=query-scheduler-ring
+loki-1          | level=info ts=2026-09-20T20:42:00.016759786Z caller=module_service.go:82 msg=starting module=store
+loki-1          | level=info ts=2026-09-20T20:42:00.016833385Z caller=ring.go:361 msg="ring doesn't exist in KV store yet"
+loki-1          | level=info ts=2026-09-20T20:42:00.016833845Z caller=ring.go:361 msg="ring doesn't exist in KV store yet"
+loki-1          | level=info ts=2026-09-20T20:42:00.016897215Z caller=module_service.go:82 msg=starting module=ingester-querier
+loki-1          | level=info ts=2026-09-20T20:42:00.016903757Z caller=module_service.go:82 msg=starting module=query-frontend-tripperware
+loki-1          | level=info ts=2026-09-20T20:42:00.016911191Z caller=module_service.go:82 msg=starting module=analytics
+loki-1          | level=info ts=2026-09-20T20:42:00.016853733Z caller=basic_lifecycler.go:301 msg="instance not found in the ring" instance=9bc56fdc473f ring=scheduler
+loki-1          | level=info ts=2026-09-20T20:42:00.016950775Z caller=basic_lifecycler_delegates.go:63 msg="not loading tokens from file, tokens file path is empty"
+loki-1          | level=info ts=2026-09-20T20:42:00.017012932Z caller=module_service.go:82 msg=starting module=rule-evaluator
+loki-1          | level=info ts=2026-09-20T20:42:00.017019194Z caller=module_service.go:82 msg=starting module=compactor
+loki-1          | level=info ts=2026-09-20T20:42:00.017040163Z caller=module_service.go:82 msg=starting module=distributor
+loki-1          | level=info ts=2026-09-20T20:42:00.01710218Z caller=module_service.go:82 msg=starting module=ruler
+loki-1          | level=info ts=2026-09-20T20:42:00.017135763Z caller=ring.go:361 msg="ring doesn't exist in KV store yet"
+loki-1          | level=error ts=2026-09-20T20:42:00.017129231Z caller=ratestore.go:109 msg="error getting ingester clients" err="empty ring"
+loki-1          | level=info ts=2026-09-20T20:42:00.017155099Z caller=ruler.go:533 msg="ruler up and running"
+loki-1          | level=info ts=2026-09-20T20:42:00.017202559Z caller=basic_lifecycler.go:301 component=distributor msg="instance not found in the ring" instance=9bc56fdc473f ring=distributor
+loki-1          | level=info ts=2026-09-20T20:42:00.017217367Z caller=ring.go:361 component=distributor msg="ring doesn't exist in KV store yet"
+loki-1          | level=info ts=2026-09-20T20:42:00.017229509Z caller=module_service.go:82 msg=starting module=ingester
+loki-1          | level=info ts=2026-09-20T20:42:00.017257933Z caller=ingester.go:564 component=ingester msg="recovering from checkpoint"
+loki-1          | level=info ts=2026-09-20T20:42:00.017317946Z caller=recovery.go:41 component=ingester msg="no checkpoint found, treating as no-op"
+loki-1          | level=info ts=2026-09-20T20:42:00.017363531Z caller=ringmanager.go:186 msg="waiting until scheduler is JOINING in the ring"
+loki-1          | level=info ts=2026-09-20T20:42:00.017392466Z caller=ingester.go:580 component=ingester msg="recovered WAL checkpoint recovery finished" elapsed=141.957µs errors=false
+loki-1          | level=info ts=2026-09-20T20:42:00.017404348Z caller=ingester.go:586 component=ingester msg="recovering from WAL"
+loki-1          | level=info ts=2026-09-20T20:42:00.017411952Z caller=basic_lifecycler.go:301 msg="instance not found in the ring" instance=9bc56fdc473f ring=compactor
+loki-1          | level=info ts=2026-09-20T20:42:00.017436779Z caller=basic_lifecycler_delegates.go:63 msg="not loading tokens from file, tokens file path is empty"
+loki-1          | level=info ts=2026-09-20T20:42:00.017553088Z caller=compactor.go:443 msg="waiting until compactor is JOINING in the ring"
+loki-1          | level=info ts=2026-09-20T20:42:00.017560762Z caller=compactor.go:447 msg="compactor is JOINING in the ring"
+loki-1          | level=info ts=2026-09-20T20:42:00.017589667Z caller=compactor.go:457 msg="waiting until compactor is ACTIVE in the ring"
+loki-1          | level=info ts=2026-09-20T20:42:00.017600056Z caller=compactor.go:461 msg="compactor is ACTIVE in the ring"
+loki-1          | level=info ts=2026-09-20T20:42:00.096966178Z caller=ingester.go:602 component=ingester msg="WAL segment recovery finished" elapsed=79.713384ms errors=false
+loki-1          | level=info ts=2026-09-20T20:42:00.09702072Z caller=ingester.go:550 component=ingester msg="closing recoverer"
+loki-1          | level=info ts=2026-09-20T20:42:00.09704704Z caller=ingester.go:558 component=ingester msg="WAL recovery finished" time=79.795609ms
+loki-1          | level=info ts=2026-09-20T20:42:00.097124866Z caller=lifecycler.go:677 component=ingester msg="not loading tokens from file, tokens file path is empty"
+loki-1          | level=info ts=2026-09-20T20:42:00.097195629Z caller=lifecycler.go:704 component=ingester msg="instance not found in ring, adding with no tokens" ring=ingester
+loki-1          | level=info ts=2026-09-20T20:42:00.097285989Z caller=lifecycler.go:546 component=ingester msg="auto-joining cluster after timeout" ring=ingester
+loki-1          | level=info ts=2026-09-20T20:42:00.097375217Z caller=wal.go:157 msg=started component=wal
+loki-1          | level=info ts=2026-09-20T20:42:00.09743014Z caller=ingester.go:771 component=ingester msg="sleeping for initial delay before starting periodic flushing" delay=11.701419906s
+loki-1          | level=info ts=2026-09-20T20:42:00.160144423Z caller=ringmanager.go:190 msg="scheduler is JOINING in the ring"
+loki-1          | level=info ts=2026-09-20T20:42:00.160352936Z caller=ringmanager.go:199 msg="waiting until scheduler is ACTIVE in the ring"
+loki-1          | level=info ts=2026-09-20T20:42:00.362362107Z caller=ringmanager.go:203 msg="scheduler is ACTIVE in the ring"
+loki-1          | level=info ts=2026-09-20T20:42:00.362444792Z caller=module_service.go:82 msg=starting module=query-scheduler
+loki-1          | level=info ts=2026-09-20T20:42:00.362543488Z caller=module_service.go:82 msg=starting module=querier
+loki-1          | level=info ts=2026-09-20T20:42:00.362589925Z caller=module_service.go:82 msg=starting module=query-frontend
+loki-1          | level=info ts=2026-09-20T20:42:00.362659576Z caller=loki.go:581 msg="Loki started" startup_time=561.213867ms
+loki-1          | level=info ts=2026-09-20T20:42:03.362713312Z caller=scheduler.go:653 msg="this scheduler is in the ReplicationSet, will now accept requests."
+loki-1          | level=info ts=2026-09-20T20:42:03.365893802Z caller=worker.go:232 component=querier msg="adding connection" addr=172.18.0.2:9096
+loki-1          | level=info ts=2026-09-20T20:42:05.018022923Z caller=compactor.go:522 msg="this instance has been chosen to run the compactor, starting compactor"
+loki-1          | level=info ts=2026-09-20T20:42:05.01810671Z caller=compactor.go:551 msg="waiting 10m0s for ring to stay stable and previous compactions to finish before starting compactor"
+loki-1          | level=info ts=2026-09-20T20:42:10.366002445Z caller=frontend_scheduler_worker.go:107 msg="adding connection to scheduler" addr=172.18.0.2:9096
+loki-1          | level=info ts=2026-09-20T20:42:30.101085776Z caller=recalculate_owned_streams.go:49 msg="starting recalculate owned streams job"
+loki-1          | level=info ts=2026-09-20T20:42:30.111491009Z caller=recalculate_owned_streams.go:63 msg="detected ring changes, re-evaluating streams ownership"
+loki-1          | level=info ts=2026-09-20T20:42:30.111568575Z caller=recalculate_owned_streams.go:82 msg="fixed limit has been updated" tenant=fake old=2147483647 new=5000
+loki-1          | level=info ts=2026-09-20T20:42:30.11160306Z caller=recalculate_owned_streams.go:52 msg="completed recalculate owned streams job"
+loki-1          | level=info ts=2026-09-20T20:43:00.002356951Z caller=table_manager.go:136 index-store=tsdb-2024-01-01 msg="uploading tables"
+loki-1          | level=info ts=2026-09-20T20:43:00.099621461Z caller=recalculate_owned_streams.go:49 msg="starting recalculate owned streams job"
+loki-1          | level=info ts=2026-09-20T20:43:00.103783094Z caller=recalculate_owned_streams.go:52 msg="completed recalculate owned streams job"
+loki-1          | level=info ts=2026-09-20T20:43:30.097660038Z caller=recalculate_owned_streams.go:49 msg="starting recalculate owned streams job"
+loki-1          | level=info ts=2026-09-20T20:43:30.097776727Z caller=recalculate_owned_streams.go:52 msg="completed recalculate owned streams job"
+loki-1          | level=info ts=2026-09-20T20:43:59.988520957Z caller=table_manager.go:136 index-store=tsdb-2024-01-01 msg="uploading tables"
+loki-1          | level=info ts=2026-09-20T20:44:00.097718081Z caller=recalculate_owned_streams.go:49 msg="starting recalculate owned streams job"
+loki-1          | level=info ts=2026-09-20T20:44:00.097884955Z caller=recalculate_owned_streams.go:52 msg="completed recalculate owned streams job"
+kafka-1         | [2026-09-20 20:42:16,420] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-30 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,420] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-26 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,422] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-5 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,492] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-38 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,492] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-1 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,493] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-34 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,493] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-16 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,494] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-45 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,495] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-12 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,497] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-41 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,497] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-24 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,498] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-20 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,498] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-49 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,499] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-9 with epoch 2 in 77ms where 75ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,499] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-42 with epoch 2 in 78ms where 78ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,499] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-0 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,499] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-17 with epoch 2 in 4ms where 4ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,499] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-30 with epoch 2 in 6ms where 5ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,499] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-29 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,499] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-25 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,499] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-26 with epoch 2 in 4ms where 4ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,500] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-8 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,500] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-46 with epoch 2 in 78ms where 78ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,500] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-37 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,500] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-4 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,501] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-21 with epoch 2 in 5ms where 5ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,501] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-34 with epoch 2 in 5ms where 5ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,502] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-0 with epoch 2 in 1ms where 1ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,501] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-33 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,507] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-15 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,508] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-48 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,508] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-11 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,508] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-44 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,508] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-23 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,509] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-19 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,509] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-32 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,509] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-28 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,509] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-7 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,509] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-5 with epoch 2 in 5ms where 5ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,509] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-40 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,509] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-13 with epoch 2 in 81ms where 81ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,510] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-41 with epoch 2 in 1ms where 1ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,512] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-3 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,512] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-16 with epoch 2 in 5ms where 5ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,513] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-1 with epoch 2 in 5ms where 5ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,513] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-20 with epoch 2 in 1ms where 1ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,514] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-38 with epoch 2 in 4ms where 4ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,514] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-45 with epoch 2 in 5ms where 5ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,514] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-36 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,515] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-47 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,516] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-14 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,517] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-43 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,521] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-10 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,521] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-22 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,590] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-18 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,590] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-31 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,591] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-27 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,592] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-39 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,593] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-6 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,593] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-35 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,594] INFO [GroupCoordinator id=1] Scheduling loading of metadata from __consumer_offsets-2 with epoch 2 (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,611] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-29 with epoch 2 in 110ms where 110ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,611] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-24 with epoch 2 in 110ms where 110ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,611] INFO [GroupCoordinator id=1 topic=__consumer_offsets partition=49] Loaded classic group message-store with 0 members. (org.apache.kafka.coordinator.group.GroupMetadataManager)
+kafka-1         | [2026-09-20 20:42:16,611] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-11 with epoch 2 in 101ms where 101ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,611] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-44 with epoch 2 in 97ms where 97ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,611] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-12 with epoch 2 in 110ms where 110ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,611] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-19 with epoch 2 in 97ms where 97ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,612] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-27 with epoch 2 in 18ms where 18ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,612] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-25 with epoch 2 in 110ms where 110ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,612] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-49 with epoch 2 in 110ms where 1ms was spent in the scheduler. Loaded 8 records which total to 1415 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,613] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-33 with epoch 2 in 103ms where 103ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,613] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-48 with epoch 2 in 102ms where 102ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,613] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-6 with epoch 2 in 17ms where 17ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,613] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-3 with epoch 2 in 97ms where 97ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,613] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-43 with epoch 2 in 90ms where 90ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,613] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-28 with epoch 2 in 98ms where 98ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,613] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-22 with epoch 2 in 21ms where 21ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,613] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-31 with epoch 2 in 18ms where 18ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,613] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-18 with epoch 2 in 21ms where 21ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,614] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-35 with epoch 2 in 15ms where 15ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,614] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-32 with epoch 2 in 98ms where 98ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,614] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-15 with epoch 2 in 97ms where 97ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,614] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-40 with epoch 2 in 97ms where 97ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,614] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-14 with epoch 2 in 93ms where 93ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,614] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-7 with epoch 2 in 97ms where 97ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,614] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-47 with epoch 2 in 90ms where 90ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,614] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-2 with epoch 2 in 15ms where 15ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,614] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-36 with epoch 2 in 95ms where 95ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,614] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-23 with epoch 2 in 99ms where 99ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,614] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-39 with epoch 2 in 17ms where 17ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,615] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-8 with epoch 2 in 111ms where 111ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,615] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-4 with epoch 2 in 103ms where 103ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,615] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-37 with epoch 2 in 108ms where 108ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:16,615] INFO [GroupCoordinator id=1] Finished loading of metadata from __consumer_offsets-10 with epoch 2 in 17ms where 17ms was spent in the scheduler. Loaded 0 records which total to 0 bytes. (org.apache.kafka.coordinator.common.runtime.CoordinatorRuntime)
+kafka-1         | [2026-09-20 20:42:28,752] INFO [GroupCoordinator id=1 topic=__consumer_offsets partition=49] Dynamic member with unknown member id joins group message-store in Empty state. Created a new member id consumer-api-7c913f73-74a1-413c-ae82-323fda395d9a and requesting the member to rejoin with this id. (org.apache.kafka.coordinator.group.GroupMetadataManager)
+kafka-1         | [2026-09-20 20:42:28,755] INFO [GroupCoordinator id=1 topic=__consumer_offsets partition=49] Pending dynamic member with id consumer-api-7c913f73-74a1-413c-ae82-323fda395d9a joins group message-store in Empty state. Adding to the group now. (org.apache.kafka.coordinator.group.GroupMetadataManager)
+kafka-1         | [2026-09-20 20:42:28,757] INFO [GroupCoordinator id=1 topic=__consumer_offsets partition=49] Preparing to rebalance group message-store in state PreparingRebalance with old generation 4 (reason: Adding new member consumer-api-7c913f73-74a1-413c-ae82-323fda395d9a with group instance id null; client reason: not provided). (org.apache.kafka.coordinator.group.GroupMetadataManager)
+kafka-1         | [2026-09-20 20:42:28,759] INFO [GroupCoordinator id=1 topic=__consumer_offsets partition=49] Stabilized group message-store generation 5 with 1 members. (org.apache.kafka.coordinator.group.GroupMetadataManager)
+kafka-1         | [2026-09-20 20:42:28,762] INFO [GroupCoordinator id=1 topic=__consumer_offsets partition=49] Assignment received from leader consumer-api-7c913f73-74a1-413c-ae82-323fda395d9a for group message-store for generation 5. The group has 1 members, 0 of which are static. (org.apache.kafka.coordinator.group.GroupMetadataManager)

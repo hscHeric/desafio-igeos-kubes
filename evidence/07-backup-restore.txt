@@ -1,0 +1,4 @@
+Creating PostgreSQL backup at /tmp/postgres-backups/messages-20260920T204408Z.dump
+Restoring /tmp/postgres-backups/messages-20260920T204408Z.dump into database ci_messages_restore
+NOTICE:  database "ci_messages_restore" does not exist, skipping
+Backup and restore verified: 3 message(s) restored into ci_messages_restore

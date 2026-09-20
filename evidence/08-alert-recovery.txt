@@ -1,0 +1,28 @@
+Stopping consumer-api to trigger the availability alert
+ Container desafio-igeos-kubes-consumer-api-1 Stopping 
+ Container desafio-igeos-kubes-consumer-api-1 Stopped 
+ConsumerApiDown alert is firing
+ Container desafio-igeos-kubes-kafka-volume-init-1 Starting 
+ Container desafio-igeos-kubes-postgres-1 Waiting 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Started 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Healthy 
+ Container desafio-igeos-kubes-postgres-init-1 Starting 
+ Container desafio-igeos-kubes-postgres-init-1 Started 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Exited 
+ Container desafio-igeos-kubes-kafka-1 Waiting 
+ Container desafio-igeos-kubes-kafka-1 Healthy 
+ Container desafio-igeos-kubes-kafka-init-1 Starting 
+ Container desafio-igeos-kubes-kafka-init-1 Started 
+ Container desafio-igeos-kubes-kafka-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Waiting 
+ Container desafio-igeos-kubes-kafka-init-1 Waiting 
+ Container desafio-igeos-kubes-postgres-init-1 Waiting 
+ Container desafio-igeos-kubes-kafka-1 Healthy 
+ Container desafio-igeos-kubes-postgres-1 Healthy 
+ Container desafio-igeos-kubes-postgres-init-1 Exited 
+ Container desafio-igeos-kubes-kafka-init-1 Exited 
+ Container desafio-igeos-kubes-consumer-api-1 Starting 
+ Container desafio-igeos-kubes-consumer-api-1 Started 
+curl: (22) The requested URL returned error: 502
+ConsumerApiDown alert recovered

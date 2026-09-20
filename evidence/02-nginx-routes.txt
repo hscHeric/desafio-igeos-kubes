@@ -1,0 +1,51 @@
+PRODUCER
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0    404   0      0   0      0      0      0                              0  0    404   0      0   0      0      0      0                              0  0    404   0      0   0      0      0      0                              0
+HTTP/1.1 200 OK
+Server: nginx/1.28.3
+Date: Sun, 20 Sep 2026 20:40:12 GMT
+Content-Type: text/html
+Content-Length: 404
+Connection: keep-alive
+Last-Modified: Sun, 20 Sep 2026 01:58:27 GMT
+ETag: "6aaf3dc3-194"
+Accept-Ranges: bytes
+
+CONSUMER
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0    410   0      0   0      0      0      0                              0  0    410   0      0   0      0      0      0                              0  0    410   0      0   0      0      0      0                              0
+HTTP/1.1 200 OK
+Server: nginx/1.28.3
+Date: Sun, 20 Sep 2026 20:40:12 GMT
+Content-Type: text/html
+Content-Length: 410
+Connection: keep-alive
+Last-Modified: Sun, 20 Sep 2026 01:58:27 GMT
+ETag: "6aaf3dc3-19a"
+Accept-Ranges: bytes
+
+PRODUCER API
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0100     43 100     43   0      0   5342      0                              0100     43 100     43   0      0   5240      0                              0100     43 100     43   0      0   5190      0                              0
+HTTP/1.1 200 OK
+Server: nginx/1.28.3
+Date: Sun, 20 Sep 2026 20:40:12 GMT
+Content-Type: application/json
+Content-Length: 43
+Connection: keep-alive
+
+{"status":"ready","service":"producer-api"}CONSUMER API
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0100     43 100     43   0      0   1104      0                              0100     43 100     43   0      0   1101      0                              0100     43 100     43   0      0   1099      0                              0
+HTTP/1.1 200 OK
+Server: nginx/1.28.3
+Date: Sun, 20 Sep 2026 20:40:12 GMT
+Content-Type: application/json
+Content-Length: 43
+Connection: keep-alive
+
+{"status":"ready","service":"consumer-api"}

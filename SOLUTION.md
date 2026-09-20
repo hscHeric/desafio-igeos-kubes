@@ -91,6 +91,8 @@ promtail
 nginx
 ```
 
+As evidências de execução ficam em [`evidence/README.md`](evidence/README.md), que lista os comandos usados e os arquivos gerados para primeira inicialização, rotas do Nginx, publicação, consumidor parado, preservação após `down/up`, diagnóstico, backup, alertas e métricas. Os testes de retenção, recuperação avançada e desempenho também mantêm suas saídas nessa pasta.
+
 Inicie os serviços e confira as duas interfaces e APIs pelo Nginx:
 
 ```sh

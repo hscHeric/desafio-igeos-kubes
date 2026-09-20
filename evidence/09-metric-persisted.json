@@ -1,0 +1,1 @@
+{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"consumer_messages_persisted_total","instance":"consumer-api:8002","job":"consumer-api"},"value":[1789937119.040,"0"]}]}}

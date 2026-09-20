@@ -1,0 +1,1 @@
+{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"producer_messages_published_total","instance":"producer-api:8001","job":"producer-api"},"value":[1789937118.950,"0"]}]}}

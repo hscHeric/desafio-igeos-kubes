@@ -1,0 +1,16 @@
+NAME                                      IMAGE                                     COMMAND                  SERVICE             CREATED         STATUS                          PORTS
+desafio-igeos-kubes-alertmanager-1        prom/alertmanager:v0.34.1                 "/bin/alertmanager -…"   alertmanager        2 minutes ago   Up 2 minutes                    9093/tcp
+desafio-igeos-kubes-consumer-api-1        desafio-igeos-kubes-consumer-api:latest   "python main.py"         consumer-api        2 minutes ago   Up About a minute (healthy)     8002/tcp
+desafio-igeos-kubes-consumer-web-1        desafio-igeos-kubes-consumer-web:latest   "/docker-entrypoint.…"   consumer-web        2 minutes ago   Up 2 minutes (healthy)          8080/tcp
+desafio-igeos-kubes-grafana-1             grafana/grafana:13.2.2                    "/run.sh"                grafana             2 minutes ago   Up About a minute               3000/tcp
+desafio-igeos-kubes-kafka-1               apache/kafka:4.3.1                        "/__cacert_entrypoin…"   kafka               2 minutes ago   Up About a minute (healthy)     9092/tcp
+desafio-igeos-kubes-kafka-init-1          desafio-igeos-kubes-kafka-init            "python prepare.py"      kafka-init          2 minutes ago   Exited (0) About a minute ago   
+desafio-igeos-kubes-kafka-volume-init-1   apache/kafka:4.3.1                        "/bin/sh -ec 'chown …"   kafka-volume-init   2 minutes ago   Exited (0) 2 minutes ago        
+desafio-igeos-kubes-loki-1                grafana/loki:3.5.5                        "/usr/bin/loki -conf…"   loki                2 minutes ago   Up 2 minutes                    3100/tcp
+desafio-igeos-kubes-nginx-1               nginx:1.28-alpine                         "/docker-entrypoint.…"   nginx               2 minutes ago   Up About a minute (healthy)     0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
+desafio-igeos-kubes-postgres-1            postgres:17-bookworm                      "docker-entrypoint.s…"   postgres            2 minutes ago   Up 2 minutes (healthy)          5432/tcp
+desafio-igeos-kubes-postgres-init-1       desafio-igeos-kubes-postgres-init         "python prepare.py"      postgres-init       2 minutes ago   Exited (0) About a minute ago   
+desafio-igeos-kubes-producer-api-1        desafio-igeos-kubes-producer-api:latest   "python main.py"         producer-api        2 minutes ago   Up About a minute (healthy)     8001/tcp
+desafio-igeos-kubes-producer-web-1        desafio-igeos-kubes-producer-web:latest   "/docker-entrypoint.…"   producer-web        2 minutes ago   Up 2 minutes (healthy)          8080/tcp
+desafio-igeos-kubes-prometheus-1          prom/prometheus:v3.13.3                   "/bin/prometheus --c…"   prometheus          2 minutes ago   Up 2 minutes                    9090/tcp
+desafio-igeos-kubes-promtail-1            grafana/promtail:3.5.5                    "/usr/bin/promtail -…"   promtail            2 minutes ago   Up About a minute               

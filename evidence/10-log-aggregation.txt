@@ -1,0 +1,8 @@
+Mensagem publicada: 2d8dcbd9-bc87-4d03-928e-2bd2df7a8d63
+Aguardando os eventos published e persisted nos logs...
+event=published encontrado no producer-api
+event=persisted encontrado no consumer-api
+
+Evidência filtrada:
+producer-api-1  | 2026-09-20 20:50:25,749 service=producer-api level=INFO event=published message_id=2d8dcbd9-bc87-4d03-928e-2bd2df7a8d63
+consumer-api-1  | 2026-09-20 20:50:25,870 service=consumer-api level=INFO event=persisted message_id=2d8dcbd9-bc87-4d03-928e-2bd2df7a8d63 partition=0 offset=3
