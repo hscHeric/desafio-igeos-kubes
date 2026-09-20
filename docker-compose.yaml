@@ -11,6 +11,11 @@ services:
       - postgres-data:/var/lib/postgresql/data
     networks:
       - internal
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 512M
     healthcheck:
       test:
         ["CMD-SHELL", 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
@@ -56,6 +61,11 @@ services:
       - kafka-data:/tmp/kraft-combined-logs
     networks:
       - internal
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 768M
     depends_on:
       kafka-volume-init:
         condition: service_completed_successfully
@@ -115,6 +125,11 @@ services:
       - ALL
     security_opt:
       - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
     depends_on:
       kafka-init:
         condition: service_completed_successfully
@@ -146,6 +161,11 @@ services:
       - ALL
     security_opt:
       - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: 384M
     depends_on:
       kafka:
         condition: service_healthy
@@ -177,6 +197,11 @@ services:
       - ALL
     security_opt:
       - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
     healthcheck:
       test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8080/"]
       interval: 10s
@@ -199,6 +224,11 @@ services:
       - ALL
     security_opt:
       - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
     healthcheck:
       test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8080/"]
       interval: 10s
@@ -218,6 +248,11 @@ services:
       - prometheus-data:/prometheus
     networks:
       - internal
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
     restart: unless-stopped
 
   alertmanager:
@@ -230,6 +265,11 @@ services:
       - alertmanager-data:/alertmanager
     networks:
       - internal
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
     restart: unless-stopped
 
   grafana:
@@ -248,6 +288,11 @@ services:
     depends_on:
       - prometheus
       - loki
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
     restart: unless-stopped
 
   loki:
@@ -258,6 +303,11 @@ services:
       - loki-data:/loki
     networks:
       - internal
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
     restart: unless-stopped
 
   promtail:
@@ -270,6 +320,11 @@ services:
       - internal
     depends_on:
       - loki
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
     restart: unless-stopped
 
   nginx:
@@ -287,6 +342,11 @@ services:
       - /tmp
     security_opt:
       - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
     depends_on:
       producer-api:
         condition: service_healthy

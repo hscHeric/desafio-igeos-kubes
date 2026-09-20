@@ -1,0 +1,58 @@
+Parando o consumidor para criar um evento pendente
+ Container desafio-igeos-kubes-consumer-api-1 Stopping 
+ Container desafio-igeos-kubes-consumer-api-1 Stopped 
+Mensagem pendente: c084c906-7994-4ddd-b580-7bb13911bb7a
+ Container desafio-igeos-kubes-kafka-volume-init-1 Starting 
+ Container desafio-igeos-kubes-postgres-1 Waiting 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Started 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Healthy 
+ Container desafio-igeos-kubes-postgres-init-1 Starting 
+ Container desafio-igeos-kubes-postgres-init-1 Started 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Exited 
+ Container desafio-igeos-kubes-kafka-1 Waiting 
+ Container desafio-igeos-kubes-kafka-1 Healthy 
+ Container desafio-igeos-kubes-kafka-init-1 Starting 
+ Container desafio-igeos-kubes-kafka-init-1 Started 
+ Container desafio-igeos-kubes-postgres-init-1 Waiting 
+ Container desafio-igeos-kubes-kafka-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Waiting 
+ Container desafio-igeos-kubes-kafka-init-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Healthy 
+ Container desafio-igeos-kubes-postgres-init-1 Exited 
+ Container desafio-igeos-kubes-kafka-1 Healthy 
+ Container desafio-igeos-kubes-kafka-init-1 Exited 
+ Container desafio-igeos-kubes-consumer-api-1 Starting 
+ Container desafio-igeos-kubes-consumer-api-1 Started 
+Mensagem persistida antes da releitura
+ Container desafio-igeos-kubes-consumer-api-1 Stopping 
+ Container desafio-igeos-kubes-consumer-api-1 Stopped 
+Resetando o grupo message-store para o início do tópico messages
+
+GROUP           TOPIC           PARTITION  NEW-OFFSET
+message-store   messages        0          0
+ Container desafio-igeos-kubes-kafka-volume-init-1 Starting 
+ Container desafio-igeos-kubes-postgres-1 Waiting 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Started 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Healthy 
+ Container desafio-igeos-kubes-postgres-init-1 Starting 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Exited 
+ Container desafio-igeos-kubes-kafka-1 Waiting 
+ Container desafio-igeos-kubes-postgres-init-1 Started 
+ Container desafio-igeos-kubes-kafka-1 Healthy 
+ Container desafio-igeos-kubes-kafka-init-1 Starting 
+ Container desafio-igeos-kubes-kafka-init-1 Started 
+ Container desafio-igeos-kubes-kafka-init-1 Waiting 
+ Container desafio-igeos-kubes-postgres-init-1 Waiting 
+ Container desafio-igeos-kubes-kafka-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Healthy 
+ Container desafio-igeos-kubes-postgres-init-1 Exited 
+ Container desafio-igeos-kubes-kafka-1 Healthy 
+ Container desafio-igeos-kubes-kafka-init-1 Exited 
+ Container desafio-igeos-kubes-consumer-api-1 Starting 
+ Container desafio-igeos-kubes-consumer-api-1 Started 
+Releitura confirmada: 2 registros de log, 1 registro no PostgreSQL
+consumer-api-1  | 2026-09-20 13:14:39,859 service=consumer-api level=INFO event=persisted message_id=c084c906-7994-4ddd-b580-7bb13911bb7a partition=0 offset=3
+consumer-api-1  | 2026-09-20 13:14:47,101 service=consumer-api level=INFO event=persisted message_id=c084c906-7994-4ddd-b580-7bb13911bb7a partition=0 offset=3

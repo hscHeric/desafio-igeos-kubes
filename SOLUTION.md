@@ -229,6 +229,28 @@ As APIs são executadas pelo usuário sem privilégios `app`; os frontends está
 
 O CI gera relatórios JSON do Trivy para as quatro imagens da aplicação, filtrados para vulnerabilidades corrigíveis de severidade alta ou crítica. Os relatórios ficam disponíveis como o artefato `trivy-reports` por 14 dias no job do GitHub Actions. Eles devem orientar atualizações de imagens base e dependências; o workflow os registra como linha de base e não falha automaticamente por vulnerabilidades de dependências de terceiros.
 
+## Recursos e desempenho
+
+Os serviços de longa duração têm limites explícitos de CPU e memória no Compose. Kafka recebe `1.00` CPU e `768M`, PostgreSQL `0.50` CPU e `512M`, as APIs `0.50`/`0.75` CPU e `256M`/`384M`, e os componentes web e de observabilidade recebem limites menores proporcionais à sua função. Os limites são referências para o ambiente local e não representam dimensionamento de produção.
+
+O teste de carga usa apenas a biblioteca padrão do Python e publica quarenta mensagens com quatro workers concorrentes, medindo sucesso, throughput e latências média, mediana e p95:
+
+```sh
+LOAD_REQUESTS=40 LOAD_WORKERS=4 bash scripts/verify-load.sh
+```
+
+O script imprime o uso de CPU e memória dos containers antes e depois da carga usando `docker compose stats`. Registre a saída completa como evidência em `evidence/load-test-AAAA-MM-DD.txt`; os números dependem do ambiente e da carga executada.
+
+Evidência executada em 20/09/2026 com `LOAD_REQUESTS=40` e `LOAD_WORKERS=4`:
+
+```text
+requests=40 workers=4 successes=40 failures=0
+elapsed_seconds=0.492 throughput_requests_per_second=81.29
+latency_seconds_mean=0.048 median=0.045 p95=0.086 max=0.091
+```
+
+O uso de memória observado após a carga permaneceu dentro dos limites definidos: `consumer-api` em `67.48MiB / 384MiB` (17,57%), `producer-api` em `45.84MiB / 256MiB` (17,91%), PostgreSQL em `24.13MiB / 512MiB` (4,71%) e Kafka em `514MiB / 768MiB` (66,93%). O consumidor chegou a 40,46% de CPU durante a coleta, sem falhas nas 40 publicações. A saída completa está em `evidence/load-test-2026-09-20.txt`.
+
 ## Notas
 
 Tempo dedicado: aproximadamente 8 horas. A principal dificuldade foi a permissão inicial do volume Kafka. Usei Codex para revisar a configuração Docker/Compose e validei os comandos e o fluxo gerado.

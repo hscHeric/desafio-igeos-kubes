@@ -1,0 +1,32 @@
+Uso dos containers antes da carga
+NAME                                 CPU %     MEM USAGE / LIMIT   MEM %
+desafio-igeos-kubes-nginx-1          0.00%     16.04MiB / 128MiB   12.53%
+desafio-igeos-kubes-consumer-api-1   0.64%     67.49MiB / 384MiB   17.58%
+desafio-igeos-kubes-grafana-1        0.83%     231.3MiB / 256MiB   90.35%
+desafio-igeos-kubes-promtail-1       0.23%     39.03MiB / 128MiB   30.49%
+desafio-igeos-kubes-kafka-1          98.67%    571.1MiB / 768MiB   74.36%
+desafio-igeos-kubes-prometheus-1     0.27%     43.01MiB / 256MiB   16.80%
+desafio-igeos-kubes-loki-1           0.70%     52.84MiB / 256MiB   20.64%
+desafio-igeos-kubes-postgres-1       0.01%     24.64MiB / 512MiB   4.81%
+desafio-igeos-kubes-alertmanager-1   0.06%     10.5MiB / 128MiB    8.20%
+desafio-igeos-kubes-producer-api-1   0.16%     45.59MiB / 256MiB   17.81%
+desafio-igeos-kubes-producer-web-1   0.00%     7.246MiB / 128MiB   5.66%
+desafio-igeos-kubes-consumer-web-1   0.00%     7.285MiB / 128MiB   5.69%
+Executando 40 publicações com 4 workers
+requests=40 workers=4 successes=40 failures=0
+elapsed_seconds=0.492 throughput_requests_per_second=81.29
+latency_seconds_mean=0.048 median=0.045 p95=0.086 max=0.091
+Uso dos containers depois da carga
+NAME                                 CPU %     MEM USAGE / LIMIT   MEM %
+desafio-igeos-kubes-nginx-1          0.00%     16.42MiB / 128MiB   12.83%
+desafio-igeos-kubes-consumer-api-1   40.46%    67.48MiB / 384MiB   17.57%
+desafio-igeos-kubes-grafana-1        0.86%     231.5MiB / 256MiB   90.42%
+desafio-igeos-kubes-promtail-1       0.39%     41.51MiB / 128MiB   32.43%
+desafio-igeos-kubes-kafka-1          2.75%     514MiB / 768MiB     66.93%
+desafio-igeos-kubes-prometheus-1     0.18%     42.78MiB / 256MiB   16.71%
+desafio-igeos-kubes-loki-1           0.85%     53.81MiB / 256MiB   21.02%
+desafio-igeos-kubes-postgres-1       0.05%     24.13MiB / 512MiB   4.71%
+desafio-igeos-kubes-alertmanager-1   0.07%     10.5MiB / 128MiB    8.20%
+desafio-igeos-kubes-producer-api-1   0.22%     45.84MiB / 256MiB   17.91%
+desafio-igeos-kubes-producer-web-1   0.00%     7.289MiB / 128MiB   5.69%
+desafio-igeos-kubes-consumer-web-1   0.00%     7.348MiB / 128MiB   5.74%
