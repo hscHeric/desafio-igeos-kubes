@@ -177,6 +177,14 @@ Loki e Promtail reúnem os logs dos containers em uma fonte consultável pelo Gr
 
 No Grafana, abra a pasta `Mensageria` e o dashboard `Mensageria — Logs`. O painel `Logs da aplicação` mostra `producer-api` e `consumer-api`, enquanto `Logs de infraestrutura` usa uma lista explícita de serviços como Kafka, PostgreSQL, Nginx, Prometheus, Grafana, Loki e os frontends. Para investigar uma mensagem específica, use `{service=~"producer-api|consumer-api"} |= "message_id=<ID>"`. A retenção local do Loki é de sete dias no volume `loki-data`; isso atende ao diagnóstico local e não substitui arquivamento externo.
 
+Para validar a agregação de logs de forma reproduzível:
+
+```sh
+bash scripts/verify-log-aggregation.sh
+```
+
+O script publica uma mensagem, aguarda os dois serviços processarem o evento e imprime as linhas filtradas por `message_id`, comprovando `event=published` no produtor e `event=persisted` no consumidor. Use a saída do comando ou uma captura do dashboard como evidência da entrega.
+
 ## Segurança dos containers
 
 As APIs são executadas pelo usuário sem privilégios `app`; os frontends estáticos usam a imagem `nginxinc/nginx-unprivileged` e o usuário `nginx` em uma porta não privilegiada. No Compose, APIs e frontends usam filesystem somente leitura, `/tmp` temporário, `no-new-privileges` e não recebem capabilities Linux. O Nginx de entrada usa filesystem somente leitura e diretórios temporários em memória. Kafka, PostgreSQL e o inicializador do volume Kafka mantêm as permissões exigidas pelos respectivos serviços de estado.
