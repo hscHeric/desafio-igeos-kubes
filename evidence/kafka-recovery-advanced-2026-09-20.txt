@@ -1,0 +1,56 @@
+Metadados do tópico antes da recuperação
+Topic: messages	TopicId: nwidlzCQTlWQcAV5o2Zkyw	PartitionCount: 1	ReplicationFactor: 1	Configs: min.insync.replicas=1,retention.ms=604800000
+	Topic: messages	Partition: 0	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+Offsets do grupo antes da recuperação
+
+GROUP           TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                       HOST            CLIENT-ID
+message-store   messages        0          44              44              0               consumer-api-f6523160-7680-4464-8210-f7ba611c007b /172.18.0.12    consumer-api
+Parando o consumidor e publicando um evento pendente
+ Container desafio-igeos-kubes-consumer-api-1 Stopping 
+ Container desafio-igeos-kubes-consumer-api-1 Stopped 
+Mensagem pendente: 71b6c498-fd6a-4d95-bb4c-945554e246bc
+Recriando somente o container Kafka; os volumes não são removidos
+ Container desafio-igeos-kubes-kafka-1 Stopping 
+ Container desafio-igeos-kubes-kafka-1 Stopped 
+ Container desafio-igeos-kubes-kafka-1 Removing 
+ Container desafio-igeos-kubes-kafka-1 Removed 
+ Container desafio-igeos-kubes-kafka-1 Creating 
+ Container desafio-igeos-kubes-kafka-1 Created 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Starting 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Started 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Waiting 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Exited 
+ Container desafio-igeos-kubes-kafka-1 Starting 
+ Container desafio-igeos-kubes-kafka-1 Started 
+Metadados do tópico depois da recuperação
+Topic: messages	TopicId: nwidlzCQTlWQcAV5o2Zkyw	PartitionCount: 1	ReplicationFactor: 1	Configs: min.insync.replicas=1,retention.ms=604800000
+	Topic: messages	Partition: 0	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Starting 
+ Container desafio-igeos-kubes-postgres-1 Waiting 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Started 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Healthy 
+ Container desafio-igeos-kubes-postgres-init-1 Starting 
+ Container desafio-igeos-kubes-postgres-init-1 Started 
+ Container desafio-igeos-kubes-kafka-volume-init-1 Exited 
+ Container desafio-igeos-kubes-kafka-1 Waiting 
+ Container desafio-igeos-kubes-kafka-1 Healthy 
+ Container desafio-igeos-kubes-kafka-init-1 Starting 
+ Container desafio-igeos-kubes-kafka-init-1 Started 
+ Container desafio-igeos-kubes-kafka-init-1 Waiting 
+ Container desafio-igeos-kubes-postgres-init-1 Waiting 
+ Container desafio-igeos-kubes-kafka-1 Waiting 
+ Container desafio-igeos-kubes-postgres-1 Waiting 
+ Container desafio-igeos-kubes-postgres-init-1 Exited 
+ Container desafio-igeos-kubes-postgres-1 Healthy 
+ Container desafio-igeos-kubes-kafka-1 Healthy 
+ Container desafio-igeos-kubes-kafka-init-1 Exited 
+ Container desafio-igeos-kubes-consumer-api-1 Starting 
+ Container desafio-igeos-kubes-consumer-api-1 Started 
+Offsets do grupo depois da recuperação
+
+GROUP           TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                       HOST            CLIENT-ID
+message-store   messages        0          45              45              0               consumer-api-0ecc16e2-811c-422f-975a-281e0ac103e3 /172.18.0.12    consumer-api
+Evidência do evento recuperado
+consumer-api-1  | 2026-09-20 13:36:36,997 service=consumer-api level=INFO event=persisted message_id=71b6c498-fd6a-4d95-bb4c-945554e246bc partition=0 offset=44
+Recuperação confirmada: volume, metadados e offset preservados; 1 registro no PostgreSQL

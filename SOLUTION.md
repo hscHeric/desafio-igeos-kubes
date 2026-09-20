@@ -83,6 +83,11 @@ producer-web
 postgres
 postgres-init
 consumer-api
+prometheus
+alertmanager
+grafana
+loki
+promtail
 nginx
 ```
 
@@ -157,9 +162,34 @@ consumer-api-1  | 2026-09-20 13:14:39,859 service=consumer-api level=INFO event=
 consumer-api-1  | 2026-09-20 13:14:47,101 service=consumer-api level=INFO event=persisted message_id=c084c906-7994-4ddd-b580-7bb13911bb7a partition=0 offset=3
 ```
 
+## Recuperação avançada do Kafka
+
+O script [`scripts/verify-kafka-recovery-advanced.sh`](scripts/verify-kafka-recovery-advanced.sh) registra a descrição do tópico e os offsets do grupo, publica um evento pendente, recria somente o container do broker e retoma o consumidor sem remover `kafka-data`. Depois da recuperação, ele compara os metadados, os offsets, o `message_id` e a quantidade de linhas persistidas.
+
+```sh
+bash scripts/verify-kafka-recovery-advanced.sh
+```
+
+Essa estratégia recupera os eventos, metadados e offsets gravados no volume Kafka. O teste não simula corrupção do disco nem perda do host. Como o ambiente usa um broker único, uma falha física do volume não pode ser recuperada por replicação; para produção seriam necessários múltiplos brokers, replicação e backup independente.
+
+Evidência executada em 20/09/2026:
+
+```text
+Antes:  TopicId=nwidlzCQTlWQcAV5o2Zkyw  PartitionCount=1  ReplicationFactor=1  retention.ms=604800000
+        CURRENT-OFFSET=44  LOG-END-OFFSET=44  LAG=0
+
+Mensagem pendente: 71b6c498-fd6a-4d95-bb4c-945554e246bc
+
+Depois: TopicId=nwidlzCQTlWQcAV5o2Zkyw  PartitionCount=1  ReplicationFactor=1  retention.ms=604800000
+        CURRENT-OFFSET=45  LOG-END-OFFSET=45  LAG=0
+
+consumer-api-1 | 2026-09-20 13:36:36,997 service=consumer-api level=INFO event=persisted message_id=71b6c498-fd6a-4d95-bb4c-945554e246bc partition=0 offset=44
+Recuperação confirmada: volume, metadados e offset preservados; 1 registro no PostgreSQL
+```
+
 ## Integração contínua
 
-O workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) executa em pushes para `main`, pull requests e manualmente pelo GitHub Actions. Ele valida o Compose, constrói e inicia os serviços e executa [`scripts/verify-e2e.sh`](scripts/verify-e2e.sh), que confirma as rotas do Nginx, publica uma mensagem e verifica sua persistência pela API consumidora. Em caso de falha, o job publica o estado e os logs de todos os containers.
+O workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) executa em pushes para `main`, pull requests e manualmente pelo GitHub Actions. Ele valida o Compose, constrói e inicia os serviços, verifica o fluxo ponta a ponta, o reprocessamento e a recuperação avançada do Kafka, executa backup/restauração, alerta/recuperação e uma carga pequena. Em caso de falha, o job publica o estado e os logs de todos os containers.
 
 ## Backup e restauração do PostgreSQL
 

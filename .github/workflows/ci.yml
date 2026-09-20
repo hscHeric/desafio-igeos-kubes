@@ -36,6 +36,9 @@ jobs:
       - name: Verify Kafka retention and reprocessing
         run: bash scripts/verify-kafka-reprocess.sh
 
+      - name: Verify advanced Kafka recovery
+        run: bash scripts/verify-kafka-recovery-advanced.sh
+
       - name: Run small load test
         run: LOAD_REQUESTS=20 LOAD_WORKERS=2 bash scripts/verify-load.sh
 
